@@ -30,6 +30,13 @@ Class.init(
       allowNull: false,
       defaultValue: 1,
     },
+    questId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "adventurer",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
