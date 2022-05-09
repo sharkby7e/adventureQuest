@@ -16,4 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put(//updates adventurer experience)
+//updates adventurer experience)
+router.put();
+
+module.exports = router;
