@@ -11,7 +11,7 @@ Class.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,22 +20,15 @@ Class.init(
       allowNull: false,
       defaultValue: 1,
     },
-    Dexterity: {
+    dexterity: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
     },
-    Intelligence: {
+    intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
-    },
-    class: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
-      },
     },
   },
   {
