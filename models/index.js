@@ -23,12 +23,7 @@ Quest.hasMany(Adventurer, {
     onDelete: "CASCADE",
 });
 
-Quest.hasMany(Questmaster, {
-    foreignKey: "questmasterId",
-    onDelete: "CASCADE",
-});
-
-Questmaster.hasMany(Quest, {
+Quest.belongsTo(Questmaster, {
     foreignKey: "questId",
     onDelete: "CASCADE",
 });
