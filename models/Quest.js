@@ -23,13 +23,6 @@ Quest.init(
                 key: "id",
             },
         },
-        questmasterId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "questmaster",
-                key: "id",
-            },
-        },
     },
     {
         sequelize,
