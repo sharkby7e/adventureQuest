@@ -1,6 +1,7 @@
 const Adventurer = require("./Adventurer");
 const Class = require("./Class");
 const Quest = require("./Quest");
+const Questmaster = require("./Questmaster");
 
 Adventurer.hasMany(Quest, {
     foreignKey: "questId",
@@ -22,7 +23,15 @@ Quest.hasMany(Adventurer, {
     onDelete: "CASCADE",
 });
 
+Quest.hasMany(Questmaster, {
+    foreignKey: "questmasterId",
+    onDelete: "CASCADE",
+});
+
+Questmaster.hasMany(Quest, {
+    foreignKey: "questId",
+    onDelete: "CASCADE",
+});
 
 
-
-module.exports = { Adventurer, Class, Quest };
+module.exports = { Adventurer, Class, Quest, Questmaster };
