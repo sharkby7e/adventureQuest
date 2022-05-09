@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Adventurer, Quests } = require("../../models");
-
+const { Adventurer } = require("../../models");
+//
 router.post("/", async (req, res) => {
   try {
     const user = await Adventurer.create(req.body);
@@ -14,9 +14,10 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+  res.status(200);
 });
 
 //updates adventurer experience)
-router.put();
+// router.put();
 
 module.exports = router;
