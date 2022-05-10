@@ -8,6 +8,6 @@ const qmDat = [
   },
 ];
 
-const seedQm = () => Questmaster.bulkCreate(qmDat);
+const seedQm = () => Questmaster.bulkCreate(qmDat, { individualHooks: true });
 
 module.exports = seedQm;
