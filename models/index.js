@@ -3,11 +3,7 @@ const Class = require("./Class");
 const Quest = require("./Quest");
 const Questmaster = require("./Questmaster");
 const Guild = require("./Guild");
-
-Adventurer.hasMany(Quest, {
-  foreignKey: "adventurerId",
-  onDelete: "CASCADE",
-});
+const User = require("./User");
 
 Quest.belongsTo(Questmaster, {
   foreignKey: "questmasterId",
@@ -18,24 +14,22 @@ Questmaster.hasMany(Quest, {
   foreignKey: "questmasterId",
 });
 
-Class.hasMany(Adventurer, {
-  foreignKey: "classId",
-});
-
 Adventurer.belongsTo(Class, {
   foreignKey: "classId",
 });
 
-
-Adventurer.belongsToMany(Class, {
-  through: Guild,
-  foreignKey: 'adventurerId',
+Class.hasMany(Adventurer, {
+  foreignKey: "classId",
 });
 
-
-Class.belongsToMany(Adventurer, {
+Adventurer.belongsToMany(Quest, {
   through: Guild,
-  foreignKey: 'classId',
+  foreignKey: "adventurerId",
 });
 
-module.exports = { Guild, Adventurer, Class, Quest, Questmaster };
+Quest.belongsToMany(Adventurer, {
+  through: Guild,
+  foreignKey: "questId",
+});
+
+module.exports = { Guild, Adventurer, Class, Quest, Questmaster, User };
