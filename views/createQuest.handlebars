@@ -2,17 +2,12 @@
 <section>
 <div class="card w-96 bg-base-100 shadow-xl">
   <div class="card-body">
-<select class="select w-full max-w-xs">
-  <option selected>Select Quest Type</option>
-  <option>Homer</option>
-  <option>Marge</option>
-  <option>Bart</option>
-  <option>Lisa</option>
-  <option>Maggie</option>
+<select class="select w-full max-w-xs" id="monster">
+  <option>Select Monster</option>
 </select>
 <textarea class="textarea" placeholder="Quest Description"></textarea> 
 <h3>DIFFICULTY</h3>
-<div class="rating">
+<div class="rating" id="diff">
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked />
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
@@ -20,7 +15,7 @@
   <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
 </div>  
 <div class="card-actions justify-end">
-      <button class="btn btn-primary">Create Quest</button>
+      <button class="btn btn-primary" id="create">Create Quest</button>
     </div>
   </div>
 </div>    
