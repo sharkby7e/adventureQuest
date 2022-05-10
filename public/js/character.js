@@ -30,7 +30,7 @@ async function init() {
     }).then(function (data) {
       return data;
     });
-  adventurerData = await fetch('/api/class/')
+  adventurerData = await fetch('/api/adventurer/')
   .then(function (response) {
     return response.json();
   }).then(function (data) {
