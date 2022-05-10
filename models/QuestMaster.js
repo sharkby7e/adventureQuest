@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
-class Questmaster extends Model { }
+class Questmaster extends Model {}
 
 Questmaster.init(
   {
@@ -11,6 +11,10 @@ Questmaster.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    questMasterName: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     username: {
       type: DataTypes.STRING,

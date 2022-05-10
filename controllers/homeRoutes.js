@@ -17,11 +17,17 @@ router.get("/login", async (req, res) => {
 });
 
 router.get("/signUp", async (req, res) => {
+  //
   res.render("signUp");
 });
 
 router.get("/quests", auth, async (req, res) => {
-  res.render("questBoard");
+  // request db, to get all quests
+  // parse the data that you want
+  // add to an object, and then pass it to the handlebars template
+  res.render("questBoard"); // res.render("questBoard", questsArray)
+
+  //in questboard.hbs {{#each quests}}{{> quest display partial}}{{/each}}
 });
 
 router.get("/create", async (req, res) => {

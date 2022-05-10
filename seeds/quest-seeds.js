@@ -7,15 +7,15 @@ const qData = [
   },
   {
     monster: "Medusa",
-    questMasterId: 2,
+    questMasterId: 1,
   },
   {
     monster: "Death Dog",
-    questMasterId: 4,
+    questMasterId: 1,
   },
   {
     monster: "Bearded Devil",
-    questMasterId: 3,
+    questMasterId: 1,
   },
 ];
 
