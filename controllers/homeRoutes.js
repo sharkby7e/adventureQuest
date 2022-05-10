@@ -23,8 +23,8 @@ router.get("/quests", async (req, res) => {
   res.render("questBoard");
 });
 
-router.get("/post", async (req, res) => {
-  res.render("postQuest");
+router.get("/create", async (req, res) => {
+  res.render("createQuest");
 });
 
 
