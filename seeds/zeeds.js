@@ -11,11 +11,11 @@ const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- db SYNCED -----\n");
 
-  await adv();
-  console.log("\n----- adventurers SEEDED -----\n");
-
   await cls();
   console.log("\n----- classes SEEDED -----\n");
+
+  await adv();
+  console.log("\n----- adventurers SEEDED -----\n");
 
   await qm();
   console.log("\n----- questmasters SEEDED -----\n");
