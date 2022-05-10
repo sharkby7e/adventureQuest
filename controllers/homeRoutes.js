@@ -28,4 +28,7 @@ router.get("/create", async (req, res) => {
   res.render("createQuest");
 });
 
+router.get("/qw", async (req, res) => {
+  res.render("questBoard");
+});
 module.exports = router;

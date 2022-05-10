@@ -1,5 +1,4 @@
 var urlDND='https://www.dnd5eapi.co/api/monsters'
-var listSelect = document.getElementById('#monster')
 var monsterData=[]
 
 function monsterMash() {
@@ -8,11 +7,14 @@ function monsterMash() {
           return response.json();
       })
       .then(function(data) {
+        var listSelect = $('#monster')
           for (var i = 0; i < data.results.length; i++) {
+
               var listEl = $('<option>');
               listEl.text(data.results[i].name);
+              console.log(listEl)
               listSelect.append(listEl)
-              console.log()
+        
           }
           monsterData = data
       })
