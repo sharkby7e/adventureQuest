@@ -3,7 +3,6 @@ const cls = require("./clas-seeds");
 // const gld = require('./guild-seeds')
 const qm = require("./qm-seeds");
 const qs = require("./quest-seeds");
-const user = require("./user-seeds");
 
 const sequelize = require("../config/connection");
 
@@ -22,9 +21,6 @@ const seedAll = async () => {
 
   await qs();
   console.log("\n----- quests SEEDED -----\n");
-
-  await user();
-  console.log("\n----- users SEEDED -----\n");
 
   process.exit(0);
 };
