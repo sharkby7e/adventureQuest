@@ -12,20 +12,26 @@ Questmaster.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
       },
     },
   },
   {
+    hooks: {
+      beforeCreate: async (username) => {
+        username.password = await bcrypt.hash(username.password, 10);
+        return username;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,
