@@ -15,22 +15,22 @@
 <header class="text-primary">
   <div class="navbar bg-warning">
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">ADVENTURE QUEST</a>
+    <a class="btn btn-ghost normal-case text-xl" href="/">ADVENTURE QUEST</a>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal p-0">
-      <li><a>QUEST</a></li>
+      <li><a href="/quests">QUEST</a></li>
 
       {if logged_out}
-      <li><a href="">SIGN UP</a></li>
+      <li><a href="/signup">SIGN UP</a></li>
       {/if}
 
       {if logged_in}
-      <li><a href=''>LOG OUT</a></li>
+      <li><a href='/'>LOG OUT</a></li>
       {/if}
 
       {if logged_out}
-      <li><a href="">SIGN IN</a></li>
+      <li><a href="/login">SIGN IN</a></li>
       {/if}
     </ul>
   </div>
