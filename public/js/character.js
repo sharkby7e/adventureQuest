@@ -24,6 +24,10 @@ var intMultplier;
 
 
 async function init() {
+
+  var activeAdventurerId = 1;
+
+
   classData = await fetch('/api/class/', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
