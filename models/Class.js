@@ -16,17 +16,17 @@ Class.init(
       allowNull: false,
     },
     strMultiplier: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 1,
     },
     dexMultiplier: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 1,
     },
     intMultiplier: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 1,
     },
