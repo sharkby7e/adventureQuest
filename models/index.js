@@ -26,4 +26,16 @@ Adventurer.belongsTo(Class, {
   foreignKey: "classId",
 });
 
+
+Adventurer.belongsToMany(Class, {
+  through: Guild,
+  foreignKey: 'adventurerId',
+});
+
+
+Class.belongsToMany(Adventurer, {
+  through: Guild,
+  foreignKey: 'classId',
+});
+
 module.exports = { Guild, Adventurer, Class, Quest, Questmaster };

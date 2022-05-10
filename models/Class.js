@@ -18,17 +18,17 @@ Class.init(
     strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // defaultValue: 1,
+      defaultValue: 1,
     },
     dexterity: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // defaultValue: 1,
+      defaultValue: 1,
     },
     intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      // defaultValue: 1,
+      defaultValue: 1,
     },
   },
   {

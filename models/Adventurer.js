@@ -35,23 +35,8 @@ Adventurer.init(
         key: "id",
       },
     },
-    // questId: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "quest",
-    //     key: "id",
-    //   },
-    // },
   },
   {
-    // {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-    },
-    // },
     sequelize,
     freezeTableName: true,
     underscored: true,
