@@ -24,13 +24,19 @@ var intMultplier;
 
 
 async function init() {
-  classData = await fetch('/api/class/')
+  classData = await fetch('/api/class/', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
     .then(function (response) {
       return response.json();
     }).then(function (data) {
       return data;
     });
-  adventurerData = await fetch('/api/adventurer/')
+  adventurerData = await fetch('/api/adventurer/', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
   .then(function (response) {
     return response.json();
   }).then(function (data) {
@@ -38,7 +44,7 @@ async function init() {
   });
 
 
-  adventurerData[classChoice].strMultiplier;
+  adventurerData[this.userId].strMultiplier;
 
 
       adventurerStr * classData[classChoice].strMultiplier;
@@ -49,6 +55,7 @@ async function init() {
 
 
 }
+
 
 
 init();
