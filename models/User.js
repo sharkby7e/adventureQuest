@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
-class Questmaster extends Model { }
+class User extends Model { }
 
-Questmaster.init(
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,25 +12,31 @@ Questmaster.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "user",
-        key: "id",
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
       },
     },
   },
   {
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "questmaster",
+    modelName: "user",
   }
 );
 
-module.exports = Questmaster;
+module.exports = User;

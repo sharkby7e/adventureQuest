@@ -28,6 +28,21 @@ Adventurer.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    strength: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    dexterity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    intelligence: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
     classId: {
       type: DataTypes.INTEGER,
       references: {
@@ -35,23 +50,8 @@ Adventurer.init(
         key: "id",
       },
     },
-    // questId: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: "quest",
-    //     key: "id",
-    //   },
-    // },
   },
   {
-    // {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-    },
-    // },
     sequelize,
     freezeTableName: true,
     underscored: true,
