@@ -11,10 +11,10 @@ Guild.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    classId: {
+    questId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "class",
+        model: "quest",
         key: "id",
       },
     },
