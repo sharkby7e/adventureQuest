@@ -5,10 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adventure Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.14.3/dist/full.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+<header class="text-primary">
+  <div class="navbar bg-warning">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">ADVENTURE QUEST</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal p-0">
+      <li><a>QUEST</a></li>
+
+      {if logged_out}
+      <li><a href="">SIGN UP</a></li>
+      {/if}
+
+      {if logged_in}
+      <li><a href=''>LOG OUT</a></li>
+      {/if}
+
+      {if logged_out}
+      <li><a href="">SIGN IN</a></li>
+      {/if}
+    </ul>
+  </div>
+</div>
+</header>
+
+  <style>
+body {
+  font-family: 'Eagle Lake', cursive;
+}
+</style>
 {{{body}}}
 
 

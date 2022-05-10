@@ -18,4 +18,14 @@ router.get("/login", async (req, res) => {
 router.get("/signUp", async (req, res) => {
   res.render("signUp");
 });
+
+router.get("/quests", async (req, res) => {
+  res.render("questBoard");
+});
+
+router.get("/post", async (req, res) => {
+  res.render("postQuest");
+});
+
+
 module.exports = router;
