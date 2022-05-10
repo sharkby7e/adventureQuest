@@ -15,17 +15,17 @@ Class.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    strength: {
+    strMultiplier: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
     },
-    dexterity: {
+    dexMultiplier: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
     },
-    intelligence: {
+    intMultiplier: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,

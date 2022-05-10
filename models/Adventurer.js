@@ -28,6 +28,21 @@ Adventurer.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    strength: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    dexterity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
+    intelligence: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
     classId: {
       type: DataTypes.INTEGER,
       references: {
