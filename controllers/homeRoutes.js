@@ -1,4 +1,5 @@
 const res = require("express/lib/response");
+const auth = require("../utils/auth");
 
 const router = require("express").Router();
 // const auth = require("../utils/auth");
@@ -19,13 +20,12 @@ router.get("/signUp", async (req, res) => {
   res.render("signUp");
 });
 
-router.get("/quests", async (req, res) => {
+router.get("/quests", auth, async (req, res) => {
   res.render("questBoard");
 });
 
 router.get("/create", async (req, res) => {
   res.render("createQuest");
 });
-
 
 module.exports = router;
