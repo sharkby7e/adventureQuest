@@ -15,6 +15,10 @@ Adventurer.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
