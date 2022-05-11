@@ -1,7 +1,7 @@
 const Adventurer = require("./Adventurer");
 const Class = require("./Class");
 const Quest = require("./Quest");
-const Questmaster = require("./Questmaster");
+const Questmaster = require("./QuestMaster");
 const Guild = require("./Guild");
 
 Quest.belongsTo(Questmaster, {
