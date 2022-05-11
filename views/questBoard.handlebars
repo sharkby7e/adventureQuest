@@ -2,20 +2,14 @@
   class="bg-no-repeat w-full bg-cover min-h-screen"
   style="background-image:url(https://imgc.allpostersimages.com/img/posters/dark-vintage-wood-texture_u-L-Q1055FI0.jpg?artHeight=550&artPerspective=n&artWidth=550&background=ffffff)"
   >
-  <!-- {{quests}} -->
 
   <div class="align-content-center">
     <h1 class="mb-5 text-5xl font-bold place-content-center">QUESTS</h1>
   </div>
 
-  {{!-- {{#each quests}} --}}
+  {{#each quests}}
+  {{>questDisplay}}
+  {{/each}}
 
-  {{!-- {{/each}} --}}
 </div>
 
-<section class="container">
-    <!-- For each painting that belongs to this gallery, the painting-details partial is used to render each painting's data -->
-    {{#each adventurers.name as |adventurers|}}
-    {{> questDisplay}}
-    {{/each}}
-</section>
