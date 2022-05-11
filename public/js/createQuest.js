@@ -1,7 +1,7 @@
 // DECLARE GLOBAL VARIABLES
 // --------------------------------------------------------------------------------------------------------------------------
 var difficulty = -0.2;
-var monsterStrength;
+var monster_str;
 var monsterDexerity;
 var monsterIntelligence;
 var checkedBoxesArray;
@@ -157,26 +157,34 @@ $('#create').on('click', () => {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    monsterStrength = data.strength;
-    monsterDexerity = data.dexterity;
-    monsterIntelligence = data.intelligence;
-    monsterHitPoints = data.hit_points;
+    monster_str = data.strength;
+    monster_dex = data.dexterity;
+    monster_int = data.intelligence;
+    monster_hit_points = data.hit_points;
 
+        const response = fetch('/api/quests', {
+          method: 'POST',
+          body: JSON.stringify({ difficulty, monster_str, monster_dex, monster_int, monster_hit_points }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+          // document.location.replace('/questboard');
+        } else {
+          alert('Failed to send');
+        }
+    
 
-
-
-
-    let windowVariable = (function () {
-      let Menu = {};
-      return {
-        difficulty: difficulty,
-        monsterStrength: data.strength,
-        monsterDexerity: data.dexterity,
-        monsterIntelligence: data.intelligence,
-        monsterHitPoints: data.hit_points,
-        checkedBoxesArray: data.hit_points
-      }
-    })();
+    // let windowVariable = (function () {
+    //   let Menu = {};
+    //   return {
+    //     difficulty: difficulty,
+    //     monster_str: data.strength,
+    //     monsterDexerity: data.dexterity,
+    //     monsterIntelligence: data.intelligence,
+    //     monsterHitPoints: data.hit_points,
+    //     checkedBoxesArray: data.hit_points
+    //   }
+    // })();
   });
 })
 
@@ -194,5 +202,5 @@ monsterMash();
 
 
 //https://hashnode.com/post/module-not-defined-as-an-error-in-javascript-cjf5sq8tm00zpy5s213knebuc
-// module.exports = { difficulty, monsterStrength, monsterDexerity, monsterIntelligence, monsterHitPoints, checkedBoxesArray };
+// module.exports = { difficulty, monster_str, monsterDexerity, monsterIntelligence, monsterHitPoints, checkedBoxesArray };
 
