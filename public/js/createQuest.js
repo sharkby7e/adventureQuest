@@ -136,7 +136,7 @@ $('#create').on('click', () => {
         monsterStrength: data.strength,
         monsterDexerity: data.dexterity,
         monsterIntelligence: data.intelligence,
-        monsterHitPoints: monsterHitPoints,
+        monsterHitPoints: data.hit_points,
         checkedBoxesArray: data.hit_points
       }
     })();
