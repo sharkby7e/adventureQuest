@@ -36,7 +36,7 @@ router.get("/questBoard", async (req, res) => {
     //   ],
     // });
     const adventurerData = await Adventurer.findAll({
-      // include: [{ model: Class }],
+      include: [{ model: Class }],
     });
     res.render("questBoard");
     // const quests = questData.get({ plain: true });

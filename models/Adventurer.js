@@ -37,7 +37,7 @@ Adventurer.init(
     questMasterId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "questMasterId",
+        model: "questmaster",
         key: "id",
       },
     },

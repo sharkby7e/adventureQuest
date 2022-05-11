@@ -8,6 +8,7 @@ const advData = [
     strength: 15,
     intelligence: 15,
     dexterity: 15,
+    questMasterId: 1,
   },
   {
     title: "Sultan",
@@ -16,6 +17,7 @@ const advData = [
     strength: 15,
     intelligence: 15,
     dexterity: 15,
+    questMasterId: 1,
   },
   {
     title: "Sheik",
@@ -25,6 +27,7 @@ const advData = [
     strength: 15,
     intelligence: 15,
     dexterity: 15,
+    questMasterId: 1,
   },
   {
     title: "King",
@@ -34,6 +37,7 @@ const advData = [
     strength: 15,
     intelligence: 15,
     dexterity: 15,
+    questMasterId: 1,
   },
 ];
 
