@@ -13,11 +13,11 @@ const seedAll = async () => {
   await cls();
   console.log("\n----- classes SEEDED -----\n");
 
-  await adv();
-  console.log("\n----- adventurers SEEDED -----\n");
-
   await qm();
   console.log("\n----- questmasters SEEDED -----\n");
+
+  await adv();
+  console.log("\n----- adventurers SEEDED -----\n");
 
   await qs();
   console.log("\n----- quests SEEDED -----\n");

@@ -15,6 +15,10 @@ Adventurer.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -33,7 +37,7 @@ Adventurer.init(
     questMasterId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "questMasterId",
+        model: "questmaster",
         key: "id",
       },
     },

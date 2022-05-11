@@ -32,10 +32,11 @@ Quest.belongsToMany(Adventurer, {
 });
 
 Questmaster.hasMany(Adventurer, {
-  foreignKey: "questmasterId",
+  foreignKey: "questMasterId",
 });
 
-
-
+Adventurer.belongsTo(Questmaster, {
+  foreignKey: "questMasterId",
+});
 
 module.exports = { Guild, Adventurer, Class, Quest, Questmaster };
