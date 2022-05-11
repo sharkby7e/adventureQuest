@@ -1,3 +1,8 @@
+// DECLARE GLOBAL VARIABLES
+// --------------------------------------------------------------------------------------------------------------------------
+  var difficulty;
+  var monsterSelected;
+
 
 
 // DECLARE UTILITY FUNCTIONS
@@ -64,7 +69,7 @@ function getDifficulty() {
 // EVENT LISTENERS
 // --------------------------------------------------------------------------------------------------------------------------
 $('#monster').on('change', () => {
-  var monsterSelected = $('#monster option:selected').text();
+  monsterSelected = $('#monster option:selected').text();
   var narratives = [
     `Defeat the ${monsterSelected} that has been ravaging the city`,
     `Beat this ${monsterSelected} for looking at me funny.`,
@@ -78,8 +83,33 @@ $('#monster').on('change', () => {
 
 
 
+
+$('#difficulty').on('click', (e) => {
+  switch (e.target.attr('id') {
+    case 'star-1': difficulty = 0;//direct reduction of probability by percentage
+    break;
+    case 'star-2': difficulty = -0.2;//direct reduction of probability by percentage
+    break;
+    case 'star-3': difficulty = -0.3;//direct reduction of probability by percentage
+    break;
+    case 'star-4': difficulty = -0.4;//direct reduction of probability by percentage
+    break;
+    case 'star-5': difficulty = -0.5;//direct reduction of probability by percentage
+    break;
+
+    default: difficulty = 1;
+  }
+  
+});
+
+
+
 // FUNCTIONS TO BE INIATED UPON PAGE LOADING
 // --------------------------------------------------------------------------------------------------------------------------
 monsterMash()
 
 
+
+
+
+module.exports = { difficulty, monsterSelected }
