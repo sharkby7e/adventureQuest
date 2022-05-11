@@ -2,16 +2,16 @@ const router = require("express").Router();
 const { Quest } = require("../../models");
 
 
-// router.get("/", async (req, res) => {
-//   try {
-//     const getQuests = await Quest.findAll({
+router.get("/", async (req, res) => {
+  try {
+    const getQuests = await Quest.findAll({
 
-//     });
-//     res.json(getQuests);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    });
+    res.json(getQuests);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // router.get("/:id", async (req, res) => {
 //   try {
@@ -28,9 +28,9 @@ const { Quest } = require("../../models");
 //   }
 // });
 
-router.post("/random", (req, res) => {
-  res.json(req.body);
-})
+// router.post("/random", (req, res) => {
+//   res.json(req.body);
+// })
 
 // router.post("/", async (req, res) => {
 //   try {
@@ -75,5 +75,25 @@ router.post("/random", (req, res) => {
 
 
 
+// router.post("/", async (req, res) => {
+//   try {
+//     const user = await Quest.create(req.body);
+//     req.session.save(() => {
+//       req.session.user_id = user.id;
+//       req.session.logged_in = true;
+//       res
+//         .status(200)
+//         .json({ user: user, message: `New user ${req.body.name} created!` });
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+//   res.status(200);
+// });
+
+router.post("/random", async (req, res) => {
+  // res.json("hello");
+  res.json(req.body);
+});
 
 module.exports = router;
