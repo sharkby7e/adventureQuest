@@ -1,9 +1,12 @@
 const quest = require("./createQuest");
 
 
+var battleScore = 0;
+var outcome;
 var activeAdventurerId = 1;
 
 async function gameMechanics(activeAdventurerId) {
+  battleScore = 0;
   adventurerData = await fetch(`/api/adventurer/${activeAdventurerId}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -29,13 +32,12 @@ async function gameMechanics(activeAdventurerId) {
   intWinPercentage = ((adventurerData.intelligence * adventurerData.class.intMultiplier) / 100) + quest.difficulty + (0 - (chosenMonster.intelligence / 100));
 
   battleArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
-  battleScore = 
   for (let i = 0; i < battleArray.length; i++) {
     if (Math.random() > battleArray[i]) {
       battleScore++
     }
   }
-
+  if (battleScore > 1) { outcome = "Win" } else { outcome = "Lose" }
 
 }
 
