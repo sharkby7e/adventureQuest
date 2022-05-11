@@ -54,7 +54,7 @@ async function gameMechanics(activeAdventurerId) {
   if (hits / (hits + misses) > 0.7) {
     outcome = "Win"
   } else {
-    outcome = "Lose"
+    outcome = "Loss"
   }
 
   return battle;
