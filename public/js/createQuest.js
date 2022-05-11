@@ -1,6 +1,6 @@
 // DECLARE GLOBAL VARIABLES
 // --------------------------------------------------------------------------------------------------------------------------
-var difficulty;
+var difficulty = -0.2;
 var monsterStrength;
 var monsterDexerity;
 var monsterIntelligence;
@@ -73,23 +73,6 @@ function checkCheckBoxes() {
 }
 
 
-function getMonsterAttr() {
-  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
-  monster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monster}`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      return data;
-    });
-
-  monsterStrength = monster.strength;
-  monsterDexerity = monster.dexterity;
-  monsterIntelligence = monster.intelligence;
-}
-
 
 
 // EVENT LISTENERS
@@ -130,9 +113,38 @@ $("#difficulty").on("click", (e) => {
   }
 });
 
-$('#create').on('click', ()=> {
+$('#create').on('click', () => {
   checkCheckBoxes()
-  getMonsterAttr()
+  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
+  monster = fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    monsterStrength = data.strength;
+    monsterDexerity = data.dexterity;
+    monsterIntelligence = data.intelligence;
+    monsterHitPoints = data.hit_points;
+
+
+    let windowVariable = (function () {
+      let Menu = {};
+      return {
+        difficulty: difficulty,
+        monsterStrength: data.strength,
+        monsterDexerity: data.dexterity,
+        monsterIntelligence: data.intelligence,
+        monsterHitPoints: monsterHitPoints,
+        checkedBoxesArray: data.hit_points
+      }
+    })();
+
+
+  });
+
+
 })
 
 
@@ -148,5 +160,6 @@ monsterMash();
 
 
 
+//https://hashnode.com/post/module-not-defined-as-an-error-in-javascript-cjf5sq8tm00zpy5s213knebuc
+// module.exports = { difficulty, monsterStrength, monsterDexerity, monsterIntelligence, monsterHitPoints, checkedBoxesArray };
 
-module.exports = { difficulty, monsterStrength, monsterDexerity, monsterIntelligence, checkedBoxesArray };
