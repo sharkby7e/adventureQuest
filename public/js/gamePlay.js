@@ -34,7 +34,7 @@ async function gameMechanics(activeAdventurerId) {
   while (damage < quest.monsterHitPoints && injury < adventurerHitPoints) {
     if (Math.random() > battleArray[i]) {
       damage++
-      battle.push(`Die you foul beast! - You've landed a blow!!!!!!!`)
+      battle.push(`Die you foul beast! - You've landed a blow!`)
       if (i === battleArray.length - 1) {
         i = 0;
       } else {
@@ -42,7 +42,7 @@ async function gameMechanics(activeAdventurerId) {
       }
     } else {
       injury++
-      battle.push(`Ouch! That hurt! - You've taken damage!`);
+      battle.push(`Gahhhhh! Lucky blow... That won't happen again! - You've taken damage!`);
       if (i === battleArray.length - 1) {
         i = 0;
       } else {
