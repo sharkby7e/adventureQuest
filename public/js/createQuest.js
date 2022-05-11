@@ -34,12 +34,11 @@ var adventureQuest = [
 function questLines(adventureQuest){
     for(var i =0; i < adventureQuest.length; i++) {
       $(`#questList`).append(
-      $(`<div class="form-check" id="form-check-${i}">`).append(
-      $(`<input
-        class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-        type="checkbox" value="" id="flexCheckDefault">`)),
+      $(`<div>`).addClass("form-check").attr({id: `form-check-${i}`}).append(
+      $(`<input>`).addClass('form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer').attr({type: 'checkbox', id: 'flexCheckDefault'})))
+      $(`#questList`).append(
       $(`#form-check-${i}`).append(
-      $(`<label class="form-check-label inline-block text-warning" for="flexCheckDefault">`).text(adventureQuest[i])));
+      $(`<label>`).addClass('form-check-label inline-block text-warning').attr({for: "flexCheckDefault"}).text(adventureQuest[i])));
 
         // var form = $(" <div class= 'form-check"> + i +">");
         // var formInput = $('<input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">');
