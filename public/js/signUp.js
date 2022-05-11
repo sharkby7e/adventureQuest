@@ -6,10 +6,6 @@ signUp.on("click", async (e) => {
   const username = $("#user").val().trim();
   const password = $("#pass").val().trim();
   const questMasterName = $("#qmName").val().trim();
-  console.log("click");
-  console.log(username);
-  console.log(password);
-  console.log(questMasterName);
   if (password.length < 8) {
     alert("Please use a longer password");
   }
