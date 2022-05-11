@@ -77,7 +77,13 @@ $('#form-container').on('click', (e) => {
   console.log('Click');
   console.log($(e.target).attr('id'));
   $(e.target).attr('id')
+});
 
+
+$('document').on('click', (e) => {
+  console.log('Click');
+  console.log($(e.target).attr('id'));
+  // $(e.target).attr('id')
 });
 
   // chosenMonster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monsterSelected}`, {

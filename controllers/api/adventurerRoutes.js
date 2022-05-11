@@ -14,12 +14,10 @@ router.post("/", async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
-  res.status(200);
 });
 
 //updates adventurer experience)
 // router.put();
-
 
 router.get("/", async (req, res) => {
   try {
@@ -28,7 +26,7 @@ router.get("/", async (req, res) => {
   });
     res.json(getAdventurers);
   } catch (err) {
-    res.sendStatus(500).send(err);
+    res.status(500).json(err);
   }
 });
 
