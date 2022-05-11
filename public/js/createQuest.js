@@ -1,7 +1,9 @@
 // DECLARE GLOBAL VARIABLES
 // --------------------------------------------------------------------------------------------------------------------------
-  var difficulty;
-  var monsterSelected;
+var difficulty;
+var monsterStrength;
+var monsterDexerity;
+var monsterIntelligence;
 
 
 
@@ -42,10 +44,8 @@ function createNarratives(arr) {
     $(`#questList`).append($('<div>').attr({ id: 'form-container' }));
     createForms();
   }
-  
+
 }
-
-
 
 
 // $('#create').on('click', (res,req)=> {
@@ -55,15 +55,6 @@ function createNarratives(arr) {
 
 //   }
 // })
-
-
-function getDifficulty() {
-  // $('#diff').[i].
-}
-
-
-
-
 
 
 // EVENT LISTENERS
@@ -79,27 +70,48 @@ $('#monster').on('change', () => {
     `${monsterSelected} is getting away with my lucky charms hurry and stop the ${monsterSelected} before they finish them`
   ];
   createNarratives(narratives);
+
 });
 
+$('#form-container').on('click', (e) => {
+  console.log('Click');
+  console.log($(e.target).attr('id'));
+  $(e.target).attr('id')
+
+});
+
+  // chosenMonster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monsterSelected}`, {
+  //   method: 'GET',
+  //   headers: { 'Content-Type': 'application/json' },
+  // })
+  //   .then(function (response) {
+  //     return response.json();
+  //   }).then(function (data) {
+  //     return data;
+  //   });
+
+  // monsterStrength = chosenMonster.strength;
+  // monsterDexerity = chosenMonster.dexterity;
+  // monsterIntelligence = chosenMonster.intelligence;
 
 
 
 $('#difficulty').on('click', (e) => {
-  switch (e.target.attr('id') {
+  switch ($(e.target).attr('id')) {
     case 'star-1': difficulty = 0;//direct reduction of probability by percentage
-    break;
+      break;
     case 'star-2': difficulty = -0.2;//direct reduction of probability by percentage
-    break;
+      break;
     case 'star-3': difficulty = -0.3;//direct reduction of probability by percentage
-    break;
+      break;
     case 'star-4': difficulty = -0.4;//direct reduction of probability by percentage
-    break;
+      break;
     case 'star-5': difficulty = -0.5;//direct reduction of probability by percentage
-    break;
+      break;
 
     default: difficulty = 1;
   }
-  
+
 });
 
 
@@ -111,5 +123,4 @@ monsterMash()
 
 
 
-
-module.exports = { difficulty, monsterSelected }
+module.exports = { difficulty }

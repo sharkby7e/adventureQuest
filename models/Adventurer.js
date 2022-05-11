@@ -30,10 +30,10 @@ Adventurer.init(
       allowNull: false,
       defaultValue: 10,
     },
-    userId: {
+    questMasterId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
+        model: "questMasterId",
         key: "id",
       },
     },
