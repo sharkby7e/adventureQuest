@@ -5,7 +5,7 @@ router.post("/", async (req, res) => {
   try {
     const qm = await Questmaster.create(req.body);
     req.session.save(() => {
-      req.session.user_id = qm.id;
+      req.session.questMasterId = qm.id;
       req.session.logged_in = true;
       res.status(200).json({
         qm: qm,
@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
       return;
     }
     req.session.save(() => {
-      req.session.user_id = qm.id;
+      req.session.questMasterId = qm.id;
       req.session.logged_in = true;
       res.json({ qm: qm, message: `Thanks for logging in, ${qm.name}` });
     });
