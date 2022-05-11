@@ -93,33 +93,33 @@ $("#monster").on("change", () => {
   ];
   createNarratives(narratives);
 
-    document.getElementById('id-star-1')
+  document.getElementById('id-star-1')
 
-    switch (monsterHitPoints) {
-      case (monsterHitPoints < 40):
-        difficulty = 0; //direct reduction of probability by percentage
-        document.getElementById('id-star-1').dispatchEvent(clickEvent);
-        break;
-      case (monsterHitPoints < 80):
-        difficulty = -0.2; //direct reduction of probability by percentage
-        document.getElementById('id-star-2').dispatchEvent(clickEvent);
-        break;
-      case (monsterHitPoints < 120):
-        difficulty = -0.3; //direct reduction of probability by percentage
-        document.getElementById('id-star-3').dispatchEvent(clickEvent);
-        break;
-      case (monsterHitPoints < 160):
-        difficulty = -0.4; //direct reduction of probability by percentage
-        document.getElementById('id-star-4').dispatchEvent(clickEvent);
-        break;
-      case (monsterHitPoints >= 160):
-        difficulty = -0.5; //direct reduction of probability by percentage
-        document.getElementById('id-star-5').dispatchEvent(clickEvent);
-        break;
-  
-      default:
-        difficulty = 0;
-    }
+  switch (monsterHitPoints) {
+    case (monsterHitPoints < 40):
+      difficulty = 0; //direct reduction of probability by percentage
+      document.getElementById('id-star-1').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 80):
+      difficulty = -0.2; //direct reduction of probability by percentage
+      document.getElementById('id-star-2').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 120):
+      difficulty = -0.3; //direct reduction of probability by percentage
+      document.getElementById('id-star-3').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 160):
+      difficulty = -0.4; //direct reduction of probability by percentage
+      document.getElementById('id-star-4').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints >= 160):
+      difficulty = -0.5; //direct reduction of probability by percentage
+      document.getElementById('id-star-5').dispatchEvent(clickEvent);
+      break;
+
+    default:
+      difficulty = 0;
+  }
 
 
 });
@@ -162,17 +162,17 @@ $('#create').on('click', () => {
     monster_int = data.intelligence;
     monster_hit_points = data.hit_points;
 
-        const response = fetch('/api/quests', {
-          method: 'POST',
-          body: JSON.stringify({ difficulty, monster_str, monster_dex, monster_int, monster_hit_points }),
-          headers: { 'Content-Type': 'application/json' },
-        });
-        if (response.ok) {
-          // document.location.replace('/questboard');
-        } else {
-          alert('Failed to send');
-        }
-    
+    const response = fetch('/api/quests', {
+      method: 'POST',
+      body: JSON.stringify({ difficulty, monster_str, monster_dex, monster_int, monster_hit_points }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+      // document.location.replace('/questboard');
+    } else {
+      alert('Failed to send');
+    }
+
 
     // let windowVariable = (function () {
     //   let Menu = {};
