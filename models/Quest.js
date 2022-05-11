@@ -31,6 +31,11 @@ Quest.init(
       allowNull: false,
       defaultValue: 12,
     },
+    monsterHitPoints: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 50,
+    },
     monsterDex: {
       type: DataTypes.INTEGER,
       allowNull: false,

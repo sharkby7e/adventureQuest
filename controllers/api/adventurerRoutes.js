@@ -47,4 +47,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+router.post("/random", (req, res) => {
+  res.json(req.body);
+})
+
+
+
+
+
 module.exports = router;
