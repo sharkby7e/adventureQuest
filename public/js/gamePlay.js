@@ -1,28 +1,42 @@
+const quest = require("./createQuest");
 
-  var activeAdventurerId = 1;
 
-  async function attackProbability(activeAdventurerId) {
-    adventurerData = await fetch(`/api/adventurer/${activeAdventurerId}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
+var activeAdventurerId = 1;
+
+async function gameMechanics(activeAdventurerId) {
+  adventurerData = await fetch(`/api/adventurer/${activeAdventurerId}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
     .then(function (response) {
       return response.json();
     }).then(function (data) {
       return data;
     });
-  
-  
-  
-    strPercentage = (adventurerData.strength * adventurerData.class.strMultiplier) / 100;
-    dexPercentage = (adventurerData.dexterity * adventurerData.class.dexMultiplier) / 100;
-    intPercentage = (adventurerData.intelligence * adventurerData.class.intMultiplier) / 100;
-  
-  
-  
-  
+  chosenMonster = await fetch(`https://www.dnd5eapi.co/api/monsters/${quest.monsterSelected}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      return data;
+    });
+
+
+  strWinPercentage = ((adventurerData.strength * adventurerData.class.strMultiplier) / 100) + quest.difficulty + (0 - (chosenMonster.strength / 100));
+  dexWinPercentage = ((adventurerData.dexterity * adventurerData.class.dexMultiplier) / 100) + quest.difficulty + (0 - (chosenMonster.dexterity / 100));
+  intWinPercentage = ((adventurerData.intelligence * adventurerData.class.intMultiplier) / 100) + quest.difficulty + (0 - (chosenMonster.intelligence / 100));
+
+  battleArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
+  battleScore = 
+  for (let i = 0; i < battleArray.length; i++) {
+    if (Math.random() > battleArray[i]) {
+      battleScore++
+    }
   }
-  
-  
-  
-  attackProbability();
+
+
+}
+
+
