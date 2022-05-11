@@ -67,4 +67,9 @@ router.get("/qw", async (req, res) => {
 router.get("/w", async (req, res) => {
   res.render("gamePlay");
 });
+
+
+router.get("/h", async (req, res) => {
+  res.render("results");
+});
 module.exports = router;
