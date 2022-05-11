@@ -1,25 +1,28 @@
 const router = require("express").Router();
 const { Adventurer, Quest } = require("../../models");
 
-// router.post("/", async (req, res) => {
-//   try {
-//     const user = await Quest.create(req.body);
-//     req.session.save(() => {
-//       req.session.user_id = user.id;
-//       req.session.logged_in = true;
-//       res
-//         .status(200)
-//         .json({ user: user, message: `New user ${req.body.name} created!` });
-//     });
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-//   res.status(200);
-// });
+router.get("/", async (req, res) => {
+  try {
+    const allQuests = await Quest.findAll({});
+    // where: { questMasterId: req.session.questMasterId },
+    res.status(200).json({ allQuests });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-router.post("/random", async (req, res) => {
-  // res.json("hello");
-  res.json(req.body);
+router.post("/", async (req, res) => {
+  try {
+    console.log(req.body);
+    const questMasterId = req.session.questMasterId;
+    const quest = await Quest.create({
+      ...req.body,
+      questMasterId,
+    });
+    res.status(200).json({ newQuest: quest, message: `New quest created!` });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
