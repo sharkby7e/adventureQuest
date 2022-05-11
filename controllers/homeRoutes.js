@@ -27,22 +27,23 @@ router.get("/signUp", async (req, res) => {
 //don't forget to add auth back in
 router.get("/questBoard", async (req, res) => {
   try {
-    // const questData = await Quest.findAll({
-    //   include: [
-    //     {
-    //       model: Questmaster,
-    //       attributes: ["questMasterName"],
-    //     },
-    //   ],
-    // });
-    const adventurerData = await Adventurer.findAll({
-      include: [{ model: Class }],
+    const questData = await Quest.findAll({
+      include: [
+        {
+          model: Questmaster,
+          attributes: ["questMasterName"],
+        },
+      ],
     });
-    res.render("questBoard");
-    // const quests = questData.get({ plain: true });
-    // const adventurers = adventurerData.get({ plain: true });
-    // console.log(quests);
-    // console.log(adventurers);
+    const quests = questData.map((quest) => quest.get({ plain: true }));
+    const adventurerData = await Adventurer.findAll();
+    const adventurers = adventurerData.map((adventure) =>
+      adventure.get({ plain: true })
+    );
+    console.log(quests);
+    // console.log(adventurerData);
+    console.log(adventurers);
+    res.render("questBoard", { quests, adventurers });
     // res.render("questBoard", [adventurers, quests]); // res.render("questBoard", questsArray)
   } catch (err) {
     console.log("Error fetching data");
