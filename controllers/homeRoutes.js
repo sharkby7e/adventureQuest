@@ -1,5 +1,5 @@
 const res = require("express/lib/response");
-const { Questmaster, Quest, Adventurer } = require("../models");
+const { Class, Questmaster, Quest, Adventurer } = require("../models");
 const auth = require("../utils/auth");
 
 const router = require("express").Router();
@@ -36,15 +36,17 @@ router.get("/questBoard", async (req, res) => {
       ],
     });
     const quests = questData.map((quest) => quest.get({ plain: true }));
-    const adventurerData = await Adventurer.findAll();
+    const adventurerData = await Adventurer.findAll({
+      include: [{ model: Class }],
+    });
     const adventurers = adventurerData.map((adventure) =>
       adventure.get({ plain: true })
     );
-    console.log(quests);
     // console.log(adventurerData);
+    // res.render("questBoard", [adventurers, quests]); // res.render("questBoard", questsArray)
+    console.log(quests);
     console.log(adventurers);
     res.render("questBoard", { quests, adventurers });
-    // res.render("questBoard", [adventurers, quests]); // res.render("questBoard", questsArray)
   } catch (err) {
     console.log("Error fetching data");
   }
