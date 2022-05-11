@@ -34,6 +34,11 @@ Adventurer.init(
       allowNull: false,
       defaultValue: 10,
     },
+    statPoints: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 15,
+    },
     questMasterId: {
       type: DataTypes.INTEGER,
       references: {

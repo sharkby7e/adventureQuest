@@ -21,6 +21,11 @@ Quest.init(
       allowNull: false,
       defaultValue: "Save the princess from the...",
     },
+    difficulty: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0,
+    },
     questMasterId: {
       type: DataTypes.INTEGER,
       references: {
