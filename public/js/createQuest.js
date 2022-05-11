@@ -6,7 +6,11 @@ var monsterDexerity;
 var monsterIntelligence;
 var checkedBoxesArray;
 
-
+var clickEvent = new MouseEvent("click", {
+  "view": window,
+  "bubbles": true,
+  "cancelable": false
+});
 
 // DECLARE UTILITY FUNCTIONS
 // --------------------------------------------------------------------------------------------------------------------------
@@ -88,30 +92,60 @@ $("#monster").on("change", () => {
     `${monsterSelected} is getting away with my lucky charms hurry and stop the ${monsterSelected} before they finish them`,
   ];
   createNarratives(narratives);
+
+    document.getElementById('id-star-1')
+
+    switch (monsterHitPoints) {
+      case (monsterHitPoints < 40):
+        difficulty = 0; //direct reduction of probability by percentage
+        document.getElementById('id-star-1').dispatchEvent(clickEvent);
+        break;
+      case (monsterHitPoints < 80):
+        difficulty = -0.2; //direct reduction of probability by percentage
+        document.getElementById('id-star-2').dispatchEvent(clickEvent);
+        break;
+      case (monsterHitPoints < 120):
+        difficulty = -0.3; //direct reduction of probability by percentage
+        document.getElementById('id-star-3').dispatchEvent(clickEvent);
+        break;
+      case (monsterHitPoints < 160):
+        difficulty = -0.4; //direct reduction of probability by percentage
+        document.getElementById('id-star-4').dispatchEvent(clickEvent);
+        break;
+      case (monsterHitPoints >= 160):
+        difficulty = -0.5; //direct reduction of probability by percentage
+        document.getElementById('id-star-5').dispatchEvent(clickEvent);
+        break;
+  
+      default:
+        difficulty = 0;
+    }
+
+
 });
 
-$("#difficulty").on("click", (e) => {
-  switch ($(e.target).attr("id")) {
-    case "star-1":
-      difficulty = 0; //direct reduction of probability by percentage
-      break;
-    case "star-2":
-      difficulty = -0.2; //direct reduction of probability by percentage
-      break;
-    case "star-3":
-      difficulty = -0.3; //direct reduction of probability by percentage
-      break;
-    case "star-4":
-      difficulty = -0.4; //direct reduction of probability by percentage
-      break;
-    case "star-5":
-      difficulty = -0.5; //direct reduction of probability by percentage
-      break;
+// $("#difficulty").on("click", (e) => {
+//   switch ($(e.target).attr("id")) {
+//     case "star-1":
+//       difficulty = 0; //direct reduction of probability by percentage
+//       break;
+//     case "star-2":
+//       difficulty = -0.2; //direct reduction of probability by percentage
+//       break;
+//     case "star-3":
+//       difficulty = -0.3; //direct reduction of probability by percentage
+//       break;
+//     case "star-4":
+//       difficulty = -0.4; //direct reduction of probability by percentage
+//       break;
+//     case "star-5":
+//       difficulty = -0.5; //direct reduction of probability by percentage
+//       break;
 
-    default:
-      difficulty = 1;
-  }
-});
+//     default:
+//       difficulty = 1;
+//   }
+// });
 
 $('#create').on('click', () => {
   checkCheckBoxes()
@@ -129,6 +163,9 @@ $('#create').on('click', () => {
     monsterHitPoints = data.hit_points;
 
 
+
+
+
     let windowVariable = (function () {
       let Menu = {};
       return {
@@ -140,11 +177,7 @@ $('#create').on('click', () => {
         checkedBoxesArray: data.hit_points
       }
     })();
-
-
   });
-
-
 })
 
 
