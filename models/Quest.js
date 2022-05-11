@@ -26,6 +26,21 @@ Quest.init(
       allowNull: false,
       defaultValue: 0,
     },
+    monsterInt: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 12,
+    },
+    monsterDex: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 12,
+    },
+    monsterStr: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 12,
+    },
     questMasterId: {
       type: DataTypes.INTEGER,
       references: {
