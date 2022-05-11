@@ -35,15 +35,18 @@ router.get("/questBoard", async (req, res) => {
         },
       ],
     });
-    const quests = questData.map((quest) => quest.get({ plain: true }));
+
     const adventurerData = await Adventurer.findAll({
       include: [{ model: Class }],
     });
+
+    //serializedata
+    const quests = questData.map((quest) => quest.get({ plain: true }));
     const adventurers = adventurerData.map((adventure) =>
       adventure.get({ plain: true })
     );
-    // console.log(adventurerData);
-    // res.render("questBoard", [adventurers, quests]); // res.render("questBoard", questsArray)
+
+    //testing assumptions
     console.log(quests);
     console.log(adventurers);
     res.render("questBoard", { quests, adventurers });
@@ -51,13 +54,6 @@ router.get("/questBoard", async (req, res) => {
     console.log("Error fetching data");
   }
 });
-
-// request db, to get all quests
-
-// parse the data that you want
-// add to an object, and then pass it to the handlebars template
-
-//in questboard.hbs {{#each quests}}{{> quest display partial}}{{/each}}
 
 router.get("/create", async (req, res) => {
   res.render("createQuest");
@@ -70,7 +66,6 @@ router.get("/qw", async (req, res) => {
 router.get("/w", async (req, res) => {
   res.render("gamePlay");
 });
-
 
 router.get("/h", async (req, res) => {
   res.render("results");
