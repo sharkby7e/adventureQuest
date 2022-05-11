@@ -1,13 +1,15 @@
 // DECLARE GLOBAL VARIABLES
 // --------------------------------------------------------------------------------------------------------------------------
-var difficulty;
+var difficulty = -0.2;
 var monsterStrength;
 var monsterDexerity;
 var monsterIntelligence;
+var checkedBoxesArray;
+
+
 
 // DECLARE UTILITY FUNCTIONS
 // --------------------------------------------------------------------------------------------------------------------------
-
 // Populate monsters in options menu
 function monsterMash() {
   fetch(`https://www.dnd5eapi.co/api/monsters`)
@@ -35,7 +37,7 @@ function createNarratives(arr) {
               .addClass(
                 "form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
               )
-              .attr({ type: "checkbox", id: "flexCheckDefault" })
+              .attr({ type: "checkbox", value: `quest-${i}`, id: "flexCheckDefault", name: "quest" })
           )
       );
       $(`#form-container`).append(
@@ -58,13 +60,20 @@ function createNarratives(arr) {
   }
 }
 
-// $('#create').on('click', (res,req)=> {
-//   if(){
 
-//   } else {
+function checkCheckBoxes() {
+  checkBoxArray = document.querySelectorAll('input[name=quest]')
+  checkedBoxesArray = [];
+  for (let i = 0; i < checkBoxArray.length; i++) {
+    if (checkBoxArray[i].checked === true) {
+      checkedBoxesArray.push(i);
+    }
+  }
+  return checkedBoxesArray;
+}
 
-//   }
-// })
+
+
 
 // EVENT LISTENERS
 // --------------------------------------------------------------------------------------------------------------------------
@@ -80,26 +89,6 @@ $("#monster").on("change", () => {
   ];
   createNarratives(narratives);
 });
-
-$("#form-container").on("click", (e) => {
-  console.log("Click");
-  console.log($(e.target).attr("id"));
-  $(e.target).attr("id");
-});
-
-// chosenMonster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monsterSelected}`, {
-//   method: 'GET',
-//   headers: { 'Content-Type': 'application/json' },
-// })
-//   .then(function (response) {
-//     return response.json();
-//   }).then(function (data) {
-//     return data;
-//   });
-
-// monsterStrength = chosenMonster.strength;
-// monsterDexerity = chosenMonster.dexterity;
-// monsterIntelligence = chosenMonster.intelligence;
 
 $("#difficulty").on("click", (e) => {
   switch ($(e.target).attr("id")) {
@@ -124,8 +113,53 @@ $("#difficulty").on("click", (e) => {
   }
 });
 
+$('#create').on('click', () => {
+  checkCheckBoxes()
+  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
+  monster = fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    monsterStrength = data.strength;
+    monsterDexerity = data.dexterity;
+    monsterIntelligence = data.intelligence;
+    monsterHitPoints = data.hit_points;
+
+
+    let windowVariable = (function () {
+      let Menu = {};
+      return {
+        difficulty: difficulty,
+        monsterStrength: data.strength,
+        monsterDexerity: data.dexterity,
+        monsterIntelligence: data.intelligence,
+        monsterHitPoints: monsterHitPoints,
+        checkedBoxesArray: data.hit_points
+      }
+    })();
+
+
+  });
+
+
+})
+
+
+
 // FUNCTIONS TO BE INIATED UPON PAGE LOADING
 // --------------------------------------------------------------------------------------------------------------------------
 monsterMash();
 
-module.exports = { difficulty };
+
+
+
+
+
+
+
+//https://hashnode.com/post/module-not-defined-as-an-error-in-javascript-cjf5sq8tm00zpy5s213knebuc
+// module.exports = { difficulty, monsterStrength, monsterDexerity, monsterIntelligence, monsterHitPoints, checkedBoxesArray };
+
