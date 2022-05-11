@@ -1,7 +1,8 @@
 const quest = require("./createQuest");
 
 
-var battleScore = 0;
+var wins = 0;
+var losses = 0;
 var outcome;
 var activeAdventurerId = 1;
 
@@ -28,8 +29,25 @@ async function gameMechanics(activeAdventurerId) {
       battleScore++
     }
   }
-  if (battleScore > 1) { outcome = "Win" } else { outcome = "Lose" }
+  let wins = 0;
+  let losses = 0;
+  let count = 0;
+  while (count < battleArray.length * 100) {
+    if (Math.random() > battleArray[i]) {
+      wins++
+    } else {
+      losses++
+    }
+    count++
+  }
+
+  if (wins / (wins + losses) > 0.7) {
+    outcome = "Win"
+  } else {
+    outcome = "Lose"
+  }
 
 }
 
 
+module.exports = { outcome };

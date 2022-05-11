@@ -4,10 +4,12 @@ var difficulty;
 var monsterStrength;
 var monsterDexerity;
 var monsterIntelligence;
+var checkedBoxesArray;
+
+
 
 // DECLARE UTILITY FUNCTIONS
 // --------------------------------------------------------------------------------------------------------------------------
-
 // Populate monsters in options menu
 function monsterMash() {
   fetch(`https://www.dnd5eapi.co/api/monsters`)
@@ -58,13 +60,37 @@ function createNarratives(arr) {
   }
 }
 
-// $('#create').on('click', (res,req)=> {
-//   if(){
 
-//   } else {
+function checkCheckBoxes() {
+  checkBoxArray = document.querySelectorAll('input[name=quest]')
+  checkedBoxesArray = [];
+  for (let i = 0; i < checkBoxArray.length; i++) {
+    if (checkBoxArray[i].checked === true) {
+      checkedBoxesArray.push(i);
+    }
+  }
+  return checkedBoxesArray;
+}
 
-//   }
-// })
+
+function getMonsterAttr() {
+  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
+  monster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monster}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      return data;
+    });
+
+  monsterStrength = monster.strength;
+  monsterDexerity = monster.dexterity;
+  monsterIntelligence = monster.intelligence;
+}
+
+
 
 // EVENT LISTENERS
 // --------------------------------------------------------------------------------------------------------------------------
@@ -80,36 +106,6 @@ $("#monster").on("change", () => {
   ];
   createNarratives(narratives);
 });
-
-
-
-
-function checkCheckBoxes() {
-  checkBoxArray = document.querySelectorAll('input[name=quest]')
-  checkedBoxesArray = [];
-  for (let i = 0; i < checkBoxArray.length; i++) {
-    if (checkBoxArray[i].checked === true) {
-      checkedBoxesArray.push(i);
-    }
-  }
-  return checkedBoxesArray;
-}
-
-
-
-// chosenMonster = await fetch(`https://www.dnd5eapi.co/api/monsters/${monsterSelected}`, {
-//   method: 'GET',
-//   headers: { 'Content-Type': 'application/json' },
-// })
-//   .then(function (response) {
-//     return response.json();
-//   }).then(function (data) {
-//     return data;
-//   });
-
-// monsterStrength = chosenMonster.strength;
-// monsterDexerity = chosenMonster.dexterity;
-// monsterIntelligence = chosenMonster.intelligence;
 
 $("#difficulty").on("click", (e) => {
   switch ($(e.target).attr("id")) {
@@ -134,8 +130,23 @@ $("#difficulty").on("click", (e) => {
   }
 });
 
+$('#create').on('click', ()=> {
+  checkCheckBoxes()
+  getMonsterAttr()
+})
+
+
+
 // FUNCTIONS TO BE INIATED UPON PAGE LOADING
 // --------------------------------------------------------------------------------------------------------------------------
 monsterMash();
 
-// module.exports = { difficulty };
+
+
+
+
+
+
+
+
+module.exports = { difficulty, monsterStrength, monsterDexerity, monsterIntelligence, checkedBoxesArray };
