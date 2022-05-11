@@ -161,7 +161,7 @@ $('#create').on('click', () => {
     monster_dex = data.dexterity;
     monster_int = data.intelligence;
     monster_hit_points = data.hit_points;
-
+    
     const response = fetch('/api/quests', {
       method: 'POST',
       body: JSON.stringify({ difficulty, monster_str, monster_dex, monster_int, monster_hit_points }),
