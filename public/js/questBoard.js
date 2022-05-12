@@ -1,26 +1,28 @@
 const adventurers = $("#adventurers");
 const quests = $("#quests");
-let adventurerId;
-let questId;
 const adventureQuest = $("#begin");
+const chosenAdv = $("#chosenAdv");
+const chosenQue = $("#chosenQue");
+
+adventurers.on("click", adventChoiceHandler);
+quests.on("click", questChoiceHandler);
 
 function adventChoiceHandler(e) {
   e.preventDefault();
   console.log("click");
-  adventurerId = e.target.getAttribute("data-id");
-  console.log(adventurerId);
-  if (questId) {
+  aId = e.target.getAttribute("data-id");
+  chosenAdv.text(aId);
+  if (chosenQue.text()) {
     showButton();
   }
 }
 
 function questChoiceHandler(e) {
-  e.stopPropagation();
   e.preventDefault();
   console.log("click");
-  questId = e.target.getAttribute("data-id");
-  console.log(questId);
-  if (adventurerId) {
+  qid = e.target.getAttribute("data-id");
+  chosenQue.text(qid);
+  if (chosenAdv.text()) {
     showButton();
   }
 }
@@ -29,23 +31,36 @@ function showButton() {
   adventureQuest.removeClass("hidden");
 }
 
-async function postAQ(adv, qid) {
-  if ((adv, qid)) {
-    const res = await fetch(`api/adventurequest`, {
-      method: "POST",
-      body: JSON.stringify({ adventurerId: adv, questId: qid }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (res.ok) {
-      console.log("nice");
-    }
-  }
-}
+const getQid = () => {
+  return chosenQue.text();
+};
+const getAid = () => {
+  return chosenAdv.text();
+};
 
-adventurers.on("click", adventChoiceHandler);
-quests.on("click", questChoiceHandler);
-adventureQuest.on("click", postAQ(adventurerId, questId));
-// EVENT LISTENERS
-// ------------------------------------------------------------------------------------------
+adventureQuest.on("click", async () => {
+  aid = await getAid();
+  qid = await getQid();
+  console.log(aid);
+  console.log(qid);
+  const res = await fetch(`api/adventurequest`, {
+    method: "POST",
+    body: JSON.stringify({ adventurerId: aid, questId: qid }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (res.ok) {
+    res.json().then((data) => {
+      console.log(data.pk);
+      console.log(data.pk.id);
+      console.log("nice");
+      const aq = data.pk.id;
+      document.location.replace(`gameplay/${aq}`);
+    });
+  }
+});
+// if ((adv, qid)) {
+//
+// // EVENT LISTENERS
+// // ------------------------------------------------------------------------------------------
