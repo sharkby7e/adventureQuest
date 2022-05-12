@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { Quest } = require("../../models");
 
-
 router.get("/", async (req, res) => {
   try {
     const allQuests = await Quest.findAll({});
