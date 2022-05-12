@@ -18,35 +18,32 @@
     />
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
+  <style>
+    body { font-family: 'Eagle Lake', cursive; }
+  </style>
 
-  <body class="width-full">
-    <header class="text-primary">
-      <div class="navbar bg-warning">
-        <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl" href="/">ADVENTURE QUEST</a>
-        </div>
-        <div class="flex-none">
-          <ul class="menu menu-horizontal p-0">
-            {{#if logged_in}}
-              <li><a href="/api/questmasters/logout">LOG OUT</a></li>
-            {{else}}
-            {{/if}}
-          </ul>
-        </div>
+  <!-- <body class="width-full max-h-screen"> -->
+  <header class="text-primary">
+    <div class="navbar bg-warning">
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl" href="/">ADVENTURE QUEST</a>
       </div>
-    </header>
-    <!-- <br /> -->
+      <div class="flex-none">
+        <ul class="menu menu-horizontal p-0">
+          {{#if logged_in}}
+            <li><a href="/api/questmasters/logout">LOG OUT</a></li>
+          {{else}}
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </header>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-    <style>
-      body { font-family: 'Eagle Lake', cursive; }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  {{{body}}}
 
-    {{{body}}}
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-  </body>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- </body> -->
 
 </html>
