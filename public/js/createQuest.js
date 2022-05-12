@@ -1,10 +1,12 @@
 // DECLARE GLOBAL VARIABLES
 // --------------------------------------------------------------------------------------------------------------------------
 var difficulty = -0.2;
-var monster_str;
-var monsterDexerity;
-var monsterIntelligence;
-var checkedBoxesArray;
+var description;
+var monster;
+var monsterStr;
+var monsterDex;
+var monsterInt;
+var monsterHitPoints;
 
 var clickEvent = new MouseEvent("click", {
   "view": window,
@@ -65,17 +67,38 @@ function createNarratives(arr) {
 }
 
 
-function checkCheckBoxes() {
-  checkBoxArray = document.querySelectorAll('input[name=quest]')
-  checkedBoxesArray = [];
+function chosenNarrative() {
+  let checkBoxArray = document.querySelectorAll('input[name=quest]');
+  let descriptionArray = document.querySelectorAll('label[for=flexCheckDefault]');
+  let checkedBoxesArray = [];
+  let checkedBox;
   for (let i = 0; i < checkBoxArray.length; i++) {
     if (checkBoxArray[i].checked === true) {
       checkedBoxesArray.push(i);
     }
   }
-  return checkedBoxesArray;
+  if (checkedBoxesArray.length === 0) {
+    checkedbox = 0;
+  } else {
+    checkedBox = checkedBoxesArray[0];
+  }
+  return chosenNarrative = descriptionArray[checkedBox].innerHTML;
 }
 
+
+async function createQuest() {
+    const response = await fetch('/api/quests', {
+      method: 'POST',
+      body: JSON.stringify({ difficulty, monster, description, monsterStr, monsterDex, monsterInt, monsterHitPoints }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    if (response.ok) {
+      console.log("this worked");
+      // document.location.replace('/questboard');
+    } else {
+      alert('Failed to send');
+    }
+  }
 
 
 
@@ -95,31 +118,6 @@ $("#monster").on("change", () => {
 
   document.getElementById('id-star-1')
 
-  switch (monsterHitPoints) {
-    case (monsterHitPoints < 40):
-      difficulty = 0; //direct reduction of probability by percentage
-      document.getElementById('id-star-1').dispatchEvent(clickEvent);
-      break;
-    case (monsterHitPoints < 80):
-      difficulty = -0.2; //direct reduction of probability by percentage
-      document.getElementById('id-star-2').dispatchEvent(clickEvent);
-      break;
-    case (monsterHitPoints < 120):
-      difficulty = -0.3; //direct reduction of probability by percentage
-      document.getElementById('id-star-3').dispatchEvent(clickEvent);
-      break;
-    case (monsterHitPoints < 160):
-      difficulty = -0.4; //direct reduction of probability by percentage
-      document.getElementById('id-star-4').dispatchEvent(clickEvent);
-      break;
-    case (monsterHitPoints >= 160):
-      difficulty = -0.5; //direct reduction of probability by percentage
-      document.getElementById('id-star-5').dispatchEvent(clickEvent);
-      break;
-
-    default:
-      difficulty = 0;
-  }
 
 
 });
@@ -147,33 +145,51 @@ $("#monster").on("change", () => {
 //   }
 // });
 
-$('#create').on('click', () => {
-  checkCheckBoxes()
+$('#create').on('click', async () => {
   chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
-  monster = fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
+  monster = await fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
     console.log(data);
-    monster_str = data.strength;
-    monster_dex = data.dexterity;
-    monster_int = data.intelligence;
-    monster_hit_points = data.hit_points;
-    
-    const response = fetch('/api/quests', {
-      method: 'POST',
-      body: JSON.stringify({ difficulty, monster_str, monster_dex, monster_int, monster_hit_points }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    if (response.ok) {
-      // document.location.replace('/questboard');
-    } else {
-      alert('Failed to send');
-    }
+ });
+    description = chosenNarrative();
+    monster = monsterSelected;
+    monsterStr = monster.strength;
+    monsterDex = monster.dexterity;
+    monsterInt = monster.intelligence;
+    monsterHitPoints = monster.hit_points;
 
 
+  switch (monsterHitPoints) {
+    case (monsterHitPoints < 40):
+      difficulty = 0; //direct reduction of probability by percentage
+      document.getElementById('id-star-1').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 80):
+      difficulty = -0.2; //direct reduction of probability by percentage
+      document.getElementById('id-star-2').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 120):
+      difficulty = -0.3; //direct reduction of probability by percentage
+      document.getElementById('id-star-3').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints < 160):
+      difficulty = -0.4; //direct reduction of probability by percentage
+      document.getElementById('id-star-4').dispatchEvent(clickEvent);
+      break;
+    case (monsterHitPoints >= 160):
+      difficulty = -0.5; //direct reduction of probability by percentage
+      document.getElementById('id-star-5').dispatchEvent(clickEvent);
+      break;
+
+    default:
+      difficulty = 0;
+  }
+
+  createQuest()
     // let windowVariable = (function () {
     //   let Menu = {};
     //   return {
@@ -185,7 +201,7 @@ $('#create').on('click', () => {
     //     checkedBoxesArray: data.hit_points
     //   }
     // })();
-  });
+ 
 })
 
 
