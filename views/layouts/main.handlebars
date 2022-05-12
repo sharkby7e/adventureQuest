@@ -1,3 +1,4 @@
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 
   <head>
@@ -26,14 +27,16 @@
         </div>
         <div class="flex-none">
           <ul class="menu menu-horizontal p-0">
-
-            {if logged_out}
-            <li><a href="/signup">SIGN UP</a></li>
-            {/if} {if logged_in}
+            {{#if logged_in}}
+<<<<<<< HEAD
             <li><a href="/">LOG OUT</a></li>
-            {/if} {if logged_out}
-            <li><a href="/login">SIGN IN</a></li>
-            {/if}
+            {{/if}} 
+=======
+              <li><a href="/api/questmasters/logout">LOG OUT</a></li>
+            {{else}}
+
+            {{/if}}
+>>>>>>> a83a56e (user can now log out, and logout displays only when user is logged in)
           </ul>
         </div>
       </div>

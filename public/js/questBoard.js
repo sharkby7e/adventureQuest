@@ -112,3 +112,4 @@ function gameMechanics(adventurer, quest) {
 
 
 
+

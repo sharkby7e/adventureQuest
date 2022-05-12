@@ -1,25 +1,30 @@
 <!-- <!DOCTYPE html> -->
+
 <div
   class="bg-no-repeat w-full bg-cover min-h-screen"
   style="background-image:url(https://imgc.allpostersimages.com/img/posters/dark-vintage-wood-texture_u-L-Q1055FI0.jpg?artHeight=550&artPerspective=n&artWidth=550&background=ffffff)"
   >
 
   <div class="align-content-center">
-    <h1 class="mb-5 text-5xl font-bold place-content-center">QUESTS</h1>
+    <h1 class="text-5xl font-bold place-content-center">QUESTS</h1>
   </div>
-<div class="m-8 h-100 flex flex-col w-full lg:flex-row">
-  <div id = "adventurers" class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center">
+<div class="m-.5 h-100 flex flex-col w-full lg:flex-row">
+  <div id = "adventurers" class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center overflow-y-auto max-h-80">
+   <div>
     {{#each adventurers}} 
     {{>adventurersDisplay}}
     {{/each}}
+  </div>
   </div> 
 
   <div class="divider self-center lg:divider-horizontal">VS</div> 
 
-  <div class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center">
+  <div id = "adventurers" class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center overflow-y-auto max-h-80">
+<div>  
     {{#each quests}}
     {{>questDisplay}}
     {{/each}}
+  </div>
   </div>
 </div>
 
