@@ -78,16 +78,9 @@ router.get("/h", async (req, res) => {
 
 router.get("/createadventurer", async (req, res) => {
   try {
-    const classData = await Class.findall({
-      include: [{ attributes: ["type"] }],
-    });
-    const classes = classData.map((type) =>
-      type.get({ type })
-    )
-    res.render("createAdventurer", {classes, logged_in: req.session.logged_in });
-  } catch (err) {
-    console.log("Error fetching data");
-  }
+    const classData = await Class.findall({});
+    res.json(classData);
+  } catch (err) {}
 });
 
 module.exports = router;
