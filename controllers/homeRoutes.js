@@ -1,32 +1,32 @@
-const { type } = require("express/lib/response");
-const res = require("express/lib/response");
+const router = require("express").Router();
 const { Class, Questmaster, Quest, Adventurer } = require("../models");
 const auth = require("../utils/auth");
 
-const router = require("express").Router();
-// const auth = require("../utils/auth");
-
+//landing page
 router.get("/", async (req, res) => {
   try {
-    res.render("landing",{logged_in: req.session.logged_in});
+    res.render("landing", { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+//renders login page
 router.get("/login", async (req, res) => {
   // req.session.save(()=> {
   // res.session.user_id = quest
   // })
+  console.log(req.session.logged_in);
   res.render("login");
 });
 
+//renders signup page
 router.get("/signUp", async (req, res) => {
   res.render("signUp");
 });
 
-//don't forget to add auth back in
-router.get("/questBoard", async (req, res) => {
+//shows quest board, redirects to /login if not logged in
+router.get("/questBoard", auth, async (req, res) => {
   try {
     const questData = await Quest.findAll({
       include: [
@@ -50,14 +50,18 @@ router.get("/questBoard", async (req, res) => {
     //testing assumptions
     console.log(quests);
     console.log(adventurers);
-    res.render("questBoard", { quests, adventurers });
+    res.render("questBoard", {
+      quests,
+      adventurers,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.log("Error fetching data");
   }
 });
 
 router.get("/create", auth, async (req, res) => {
-  res.render("createQuest");
+  res.render("createQuest", { logged_in: req.session.logged_in });
 });
 
 router.get("/qw", async (req, res) => {
@@ -73,14 +77,14 @@ router.get("/h", async (req, res) => {
 });
 
 router.get("/createadventure", async (req, res) => {
-  try{
-    const classData = await clas.findall({
-      include:[{attributes:['type']}]
-    }) 
-    res.render("createAdventurer");
-  }catch(err){
+  try {
+    const classData = await Class.findall({
+      include: [{ attributes: ["type"] }],
+    });
+    res.render("createAdventurer", { logged_in: req.session.logged_in });
+  } catch (err) {
     console.log("Error fetching data");
-}
-})
+  }
+});
 
 module.exports = router;
