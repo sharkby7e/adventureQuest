@@ -171,6 +171,7 @@ function questChoiceHandler(e) {
 
 
 async function sendBattle( win, battle, injuries, damage, monsterHP, adventurerHP ) {
+  console.log('put initiated')
   const response = await fetch(`/api/adventurequest/1`, {
     method: 'PUT',
     body: JSON.stringify({

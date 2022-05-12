@@ -18,26 +18,25 @@ router.post("/", async (req, res) => {
 });
 
 
-router.put('/:id', (req, res) => {
-  AdventureQuest.update(
+router.put('/:id', async (req, res) => {
+  try {
+  console.log('AQ put router');
+  console.log(req.body);
+  const updated = await AdventureQuest.update(
     {
-      win: req.body.win,
-      battle: req.body.battle,
-      injuries: req.body.injuries,
-      damage: req.body.damage,
-      monsterHP: req.body.monsterHP,
-      adventurerHP: req.body.adventurerHP,
+      ...req.body,
     },
     {
       where: {
-        isbn: req.params.id,
+        id: req.params.id,
       },
     }
-  )
-    .then((updated) => {
-      res.json(updated);
-    })
-    .catch((err) => res.json(err));
+  );
+      console.log(updatedAQ);
+      console.log(updated);
+      res.json({aq: updatedAQ});
+
+  } catch (err) {res.json(err)}
 });
 
 
