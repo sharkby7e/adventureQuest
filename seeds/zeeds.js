@@ -1,6 +1,6 @@
 const adv = require("./adv-seeds");
 const cls = require("./clas-seeds");
-// const gld = require('./guild-seeds')
+const aq = require("./aq-seeds");
 const qm = require("./qm-seeds");
 const qs = require("./quest-seeds");
 
@@ -21,6 +21,9 @@ const seedAll = async () => {
 
   await qs();
   console.log("\n----- quests SEEDED -----\n");
+
+  await aq();
+  console.log("\n----- adventurequests SEEDED -----\n");
 
   process.exit(0);
 };
