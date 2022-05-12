@@ -4,15 +4,13 @@
   <div class="card-body">
     <h5 class="card-title text-center text-warning">{{monster}} Quest</h5>
     <p>{{name}}</p>
-    <p class="card-text text-info">{{description}}{{monster}}</p>
+    <p class="card-text text-info">{{description}} {{monster}}</p>
     <hr />
     <span class="card-text text-info">
       DIFFICULTY:
       {{difficulty}}
     </span>
     <hr />
-    Lets battle!!
-    <a href="./gameplay"><button class="btn btn-info">BEGIN QUEST</button></a>
-
+    <button data-id="{{id}}" class="btn btn-info">Choose</button>
   </div>
 </div>
