@@ -1,3 +1,4 @@
+const { type } = require("express/lib/response");
 const res = require("express/lib/response");
 const { Class, Questmaster, Quest, Adventurer } = require("../models");
 const auth = require("../utils/auth");
@@ -70,4 +71,16 @@ router.get("/w", async (req, res) => {
 router.get("/h", async (req, res) => {
   res.render("results");
 });
+
+router.get("/createadventure", async (req, res) => {
+  try{
+    const classData = await clas.findall({
+      include:[{attributes:['type']}]
+    }) 
+    res.render("createAdventurer");
+  }catch(err){
+    console.log("Error fetching data");
+}
+})
+
 module.exports = router;
