@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const aq = await AdventureQuest.create({
       ...req.body,
     });
-    console.log(aq);
+    console.log(aq.get({ plain }));
     res.status(200).json({ message: `New AdventureQuest created!` });
   } catch (err) {
     res.status(400).json(err);
