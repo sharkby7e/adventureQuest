@@ -1,15 +1,17 @@
-function displayPointsLeft() {
-  var pointsLeft = 15 - strChoice + dexChoice + intChoice;
-  $("#stat-points").text(pointsLeft);
-  window.setTimeout("displayPointsLeft()", 10);
-}
+
 console.log("script is linked");
 // DECLARE GLOBAL VARIABLES
 // ------------------------------------------------------------------------------------------
 var damage = 0;
+var fightArray = [];
 var injury = 0;
+var injuryString = '';
+var damageString = '';
+var adventurerHPStr = '';
+var adventurerPower;
+var monsterHPStr = '';
 var outcome;
-var battle = [];
+var battleString = '';
 var adventurerId = 0;
 var questId = 0;
 var adventurer = [];
@@ -18,6 +20,15 @@ const adventurers = $("#adventurers");
 const quests = $("#quests");
 // DECLARE UTILITY FUNCTIONS
 // ------------------------------------------------------------------------------------------
+
+
+function displayPointsLeft() {
+  var pointsLeft = 15 - strChoice + dexChoice + intChoice;
+  $("#stat-points").text(pointsLeft);
+  window.setTimeout("displayPointsLeft()", 10);
+}
+
+
 async function getQuest() {
   await fetch(`/api/quests/`, {
     method: "GET",
@@ -62,36 +73,51 @@ function gameMechanics(adventurer, quest) {
     quest.difficulty +
     (0 - quest.monsterInt / 100);
 
-  console.log("str win % :" + strWinPercentage);
-  console.log("dex win % :" + dexWinPercentage);
-  console.log("int win % :" + intWinPercentage);
 
-  battleArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
-  adventurerHitPoints =
-    adventurer.strength + adventurer.dexterity + adventurer.intelligence;
+  fightArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
+  adventurerHitPoints = adventurer.strength + adventurer.dexterity + adventurer.intelligence;
+  adventurerPower = (1 - ((strWinPercentage + dexWinPercentage + intWinPercentage) / 3));
+  monsterHitPoints = quest.monsterHitPoints;
 
-  console.log("battleArray: " + battleArray);
-  console.log("adv hit points = " + adventurerHitPoints);
-  console.log("monster hitpoints " + quest.monsterHitPoints);
+  tookDamageArr = [
+    `Gahhhhh! Lucky blow... That won't happen again! - You've taken damage!`,
+    `That one was free... I need to make to even the odds for a challenge! - You've taken damage!`,
+    `You're not getting away with that! Come here!!! - You've taken damage!`,
+    `You think that hurt?! Think again, I'm just getting started! - You've taken damage!`,
+    `If I wanted a kiss I'd have called your mother! - You've taken damage!`
+  ]
+  dealtDamageArr = [
+    `Die you foul beast! You don't stand a chance! - You've landed a blow!`,
+    `Not today! I will purify this land of your filth! - You've landed a blow!`,
+    `Go on... Try again and witness the pain I wrought upon your flesh! - You've landed a blow!`,
+    `I'm in need of some good practice!... and you're in need of a lesson! - You've landed a blow!`,
+    `I shall bathe in your tears and rain hellfire upon your damned soul!!! - You've landed a blow!`
+  ]
+
 
   damage = 0;
   injury = 0;
   let i = 0;
-  while (damage < quest.monsterHitPoints && injury < adventurerHitPoints) {
-    if (Math.random() > battleArray[i]) {
-      damage = damage + 1;
-      battle.push(`Die you foul beast! - You've landed a blow!`);
-      if (i === battleArray.length - 1) {
+
+  while (monsterHitPoints > 0 && adventurerHitPoints > 0) {
+    if (Math.random() > fightArray[i]) {
+      damage = damage + Math.ceil(Math.floor((Math.random() * 5) + 1) + adventurerPower);
+      damageString.concat(damage.toString() + '|');
+      battleString.concat(dealtDamageArr[Math.floor((Math.random() * (dealtDamageArr.length - 1)) + 1)] + '|');
+      monsterHitPoints = monsterHitPoints - damage;
+      monsterHPStr.concat(monsterHitPoints.toString() + '|');
+      if (i === fightArray.length - 1) {
         i = 0;
       } else {
         i = i + 1;
       }
     } else {
-      injury = injury + 1;
-      battle.push(
-        `Gahhhhh! Lucky blow... That won't happen again! - You've taken damage!`
-      );
-      if (i === battleArray.length - 1) {
+      injury = injury + Math.ceil(Math.floor((Math.random() * 3) + 1) - adventurerPower);
+      injuryString.concat(injury.toString() + '|');
+      battleString.concat(tookDamageArr[Math.floor((Math.random() * (tookDamageArr.length - 1)) + 1)] + '|');
+      adventurerHitPoints = adventurerHitPoints - injury;
+      adventurerHPStr.concat(adventurerHitPoints.toString() + '|');
+      if (i === fightArray.length - 1) {
         i = 0;
       } else {
         i = i + 1;
@@ -105,12 +131,18 @@ function gameMechanics(adventurer, quest) {
     outcome = "Loss";
   }
 
-  console.log("damage dealt =" + damage);
-  console.log("injuries sustained in battle =" + injury);
+  console.log("str win % :" + strWinPercentage);
+  console.log("dex win % :" + dexWinPercentage);
+  console.log("int win % :" + intWinPercentage);
+  console.log("fightArray: " + fightArray);
+  console.log("adv hit points = " + adventurerHPStr);
+  console.log("monster hitpoints " + monsterHPStr);
+  console.log("damage dealt =" + damageString);
+  console.log("injuries sustained in battle =" + injuryString);
+  console.log("The battle itself: " + battleString);
   console.log("outcome: " + outcome);
-  console.log("The battle itself: " + battle);
 
-  return battle;
+  return battleString;
 }
 
 function adventChoiceHandler(e) {
@@ -127,15 +159,11 @@ function questChoiceHandler(e) {
 }
 // EVENT LISTENERS
 // ------------------------------------------------------------------------------------------
-$("#adventurers[class=name]").on("click", (e) => {
-  e.preventDefault();
-    console.log('hello');
-
-});
 
 
 
-  // getQuest();
+
+  getQuest();
 
 
 // $("#").on("click", () => {
