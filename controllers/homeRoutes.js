@@ -64,7 +64,6 @@ router.get("/create", auth, async (req, res) => {
   res.render("createQuest", { logged_in: req.session.logged_in });
 });
 
-
 router.get("/h", async (req, res) => {
   res.render("results");
 });
@@ -96,11 +95,14 @@ router.get("/h", async (req, res) => {
 
 router.get("/createadventurer", async (req, res) => {
   try {
-    const classData = await Class.findall({});
-    res.json(classData);
-  } catch (err) {}
+    const classes = (await Class.findAll()).map((type) =>
+      type.get({ plain: true })
+    );
+    res.render("createAdventurer", { classes });
+  } catch (err) {
+    res.sendStatus(500).send(err);
+  }
 });
-
 
 // router.get('/p',async(req,res)=>{
 //   try{

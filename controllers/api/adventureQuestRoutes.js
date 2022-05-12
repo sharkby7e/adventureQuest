@@ -17,35 +17,28 @@ router.post("/", async (req, res) => {
   }
 });
 
-
-router.put('/:id', (req, res) => {
-  AdventureQuest.update(
-    {
-      win: req.body.win,
-      battle: req.body.battle,
-      injuries: req.body.injuries,
-      damage: req.body.damage,
-      monsterHP: req.body.monsterHP,
-      adventurerHP: req.body.adventurerHP,
-    },
-    {
-      where: {
-        isbn: req.params.id,
+router.put("/:id", async (req, res) => {
+  try {
+    const updated = await AdventureQuest.update(
+      {
+        ...req.body,
       },
-    }
-  )
-    .then((updated) => {
-      res.json(updated);
-    })
-    .catch((err) => res.json(err));
+      {
+        where: { id: req.params.id },
+      }
+    );
+    console.log(updated);
+    res.status(200).json({ aq: updated, message: "aq updated" });
+    // res.json(updated);
+    // console.log(updated);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
-
-
 
 router.get("/", async (req, res) => {
   try {
-    const getAdventurerQuests = await AdventureQuest.findAll({
-    });
+    const getAdventurerQuests = await AdventureQuest.findAll({});
     res.json(getAdventurerQuests);
   } catch (err) {
     res.status(500).json(err);
@@ -54,8 +47,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const getAdventurerQuest = await AdventureQuest.findByPk(req.params.id, {
-    });
+    const getAdventurerQuest = await AdventureQuest.findByPk(req.params.id, {});
     if (!getAdventurerQuest) {
       res.status(404).json({ message: "Not found with that id!" });
       return;
@@ -65,8 +57,5 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
-
 
 module.exports = router;
