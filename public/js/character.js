@@ -55,7 +55,7 @@ async function createBubba(Class, Strength, Dexterity, Intelligence, Name){
   }
 
   function stats(maxPicks) {
-    maxPicks = maxPicks || 25; //default
+    maxPicks = maxPicks || 15; //default
   
     //make sure all picks have a checked value
     var checkedCount = 0;
