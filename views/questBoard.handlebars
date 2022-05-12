@@ -6,23 +6,23 @@
   <h1 class="text-center mb-8 text-5xl font-bold place-content-center ">Choose Wisely</h1>
   <div class="mx-5 flex flex-col w-95 lg:flex-row">
     <div id = "adventurers" class="grid overflow-auto flex-grow card bg-base-300 rounded-box place-items-center max-h-96">
-      <!-- <div> -->
+       <div>
         <h2 class="mt-3 text-5xl">Adventurers</h2>
         {{#each adventurers}} 
         {{>adventurersDisplay}}
         {{/each}}
-      <!-- </div> -->
+       </div>
     </div> 
 
     <div class="divider self-center lg:divider-horizontal">VS</div> 
 
     <div id = "quests" class="grid overflow-auto flex-grow card bg-base-300 rounded-box place-items-center max-h-96">
-      <!-- <div>   -->
+       <div>
         <h2 class="mt-3 text-5xl">Quests</h2>
         {{#each quests}}
         {{>questDisplay}}
         {{/each}}
-      <!-- </div> -->
+      </div>
     </div>
   </div>
 </div>

@@ -96,13 +96,9 @@ router.get("/h", async (req, res) => {
 
 router.get("/createadventurer", async (req, res) => {
   try {
-    const classes = (await Class.findAll()).map((type) =>
-      type.get({ plain: true })
-    );
-     res.render("createAdventurer", { classes });
-  } catch (err) {
-    res.sendStatus(500).send(err);
-  }
+    const classData = await Class.findall({});
+    res.json(classData);
+  } catch (err) {}
 });
 
 
