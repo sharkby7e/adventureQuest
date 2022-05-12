@@ -11,30 +11,6 @@ AdventureQuest.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    win: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    battle: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    injuries: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    damage: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    monsterHP: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    adventurerHP: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     questId: {
       type: DataTypes.INTEGER,
       references: {
