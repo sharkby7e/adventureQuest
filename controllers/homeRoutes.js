@@ -113,4 +113,10 @@ router.get("/createadventurer", async (req, res) => {
 //   }
 // })
 
+router.get("/gameplay/:id", async (req, res) => {
+  res.render("gamePlay");
+});
+
+
+
 module.exports = router;
