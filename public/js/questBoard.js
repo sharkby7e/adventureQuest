@@ -103,13 +103,14 @@ function gameMechanics(adventurer, quest) {
 
 // EVENT LISTENERS
 // ------------------------------------------------------------------------------------------
-// $("#").on("click", () => {
+$("#adventurers[class=name]").on("click", (e) => {
+  e.preventDefault();
+    console.log('hello');
 
-//   getQuest();
-
-// });
+});
 
 
 
+  // getQuest();
 
 
