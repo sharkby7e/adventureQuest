@@ -7,10 +7,22 @@
   <div class="align-content-center">
     <h1 class="mb-5 text-5xl font-bold place-content-center">QUESTS</h1>
   </div>
+<div class="m-8 h-100 flex flex-col w-full lg:flex-row">
+  <div id = "adventurers" class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center">
+    {{#each adventurers}} 
+    {{>adventurersDisplay}}
+    {{/each}}
+  </div> 
 
-  {{#each quests}}
-  {{>questDisplay}}
-  {{/each}}
+  <div class="divider self-center lg:divider-horizontal">VS</div> 
+
+  <div class="grid overflow-auto flex-grow h-100 card bg-base-300 rounded-box place-items-center">
+    {{#each quests}}
+    {{>questDisplay}}
+    {{/each}}
+  </div>
+</div>
+
 
 </div>
 
