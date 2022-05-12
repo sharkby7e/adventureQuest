@@ -5,7 +5,6 @@
 //   window.setTimeout("displayPointsLeft()", 10);
 // }
 
-const { json } = require("express/lib/response");
 
 // const { Class } = require("../../models");
 
@@ -25,44 +24,43 @@ const { json } = require("express/lib/response");
 // classLists()
 
 
-function classList(){
-  var classes = document.getElementById('classes').value
-  switch (classes) {
-      case 'Warrior':
-        Class.id;
-          break;
-      case 'Wizard':
-        Class.id;
-          break;
-      case 'Rogue':
-            Class.id;
-            break;
-}
-}
+// function classList(){
+//   var classes = document.getElementById('classes').value
+//   switch (classes) {
+//       case 'Warrior':
+//         Class.id;
+//           break;
+//       case 'Wizard':
+//         Class.id;
+//           break;
+//       case 'Rogue':
+//             Class.id;
+//             break;
+// }
+// }
 
 
-async function createBubba(Class, Strength, Dexterity, Intelligence, Name){
-  try{
-  const bubba = await fetch('api/adventurer', {
+// async function createBubba(Class, Strength, Dexterity, Intelligence, Name){
+//   try{
+//   const bubba = await fetch('api/adventurer', {
     
-    method: 'Post',
-    body: json.stringify({Class, Strength, Dexterity, Intelligence, Name})
-    })
-  }
-    catch(err){
+//     method: 'Post',
+//     body: json.stringify({Class, Strength, Dexterity, Intelligence, Name})
+//     })
+//   }
+//     catch(err){
 
-    }
-  }
+//     }
+//   }
 
   function stats(maxPicks) {
-    maxPicks = maxPicks || 15; //default
+    maxPicks = maxPicks || 10; //default
   
     //make sure all picks have a checked value
     var checkedCount = 0;
-    var allR = document.getElementsByTagName('input');
-  
-    for(var i = 0; i < allR.length; i++) {
-      var rad = allR[i];
+    var selected = getElementsById('selected')  
+    for(var i = 0; i < selected.length; i++) {
+      var rad = selected[i];
   
       if (rad.checked) checkedCount++;
     }
@@ -76,4 +74,16 @@ async function createBubba(Class, Strength, Dexterity, Intelligence, Name){
     return true;
   }
 
+  var selected = getElementsById('selected')
 
+  selected.onclick(stats)
+
+
+
+
+  // $('#battle').text(battleArr[i]);
+  // $('#adventurerHP').text(adventurerHPArr[i]);
+  // $('#monsterHP').text(monsterHPArr[i]);
+  // $('#damage').text(damageArr[i]);
+  // $('#injuries').text(injuryArr[i]);
+  // $('#win').text(win);
