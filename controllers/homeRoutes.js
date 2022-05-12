@@ -76,12 +76,15 @@ router.get("/h", async (req, res) => {
   res.render("results");
 });
 
-router.get("/createadventure", async (req, res) => {
+router.get("/createadventurer", async (req, res) => {
   try {
     const classData = await Class.findall({
       include: [{ attributes: ["type"] }],
     });
-    res.render("createAdventurer", { logged_in: req.session.logged_in });
+    const classes = classData.map((type) =>
+      type.get({ type })
+    )
+    res.render("createAdventurer", {classes, logged_in: req.session.logged_in });
   } catch (err) {
     console.log("Error fetching data");
   }
