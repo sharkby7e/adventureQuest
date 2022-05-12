@@ -11,7 +11,10 @@ style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-wor
   <div class="card-body">
     <h2 class="card-title">CREATE A CHARCTER</h2>
     <select class="select select-bordered w-full max-w-xs" id="classAdv">
-  <option selected>CLASS</option>
+  <option selected id="classes">CLASS</option>
+  {{#each classes}}
+ {{>createAdvenDisplay}}
+  {{/each}}
 </select>
 {{!-- {{#each adventurer}}
 {{>createAdvenDisplay}}
