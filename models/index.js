@@ -5,12 +5,12 @@ const Questmaster = require("./QuestMaster");
 const Guild = require("./Guild");
 
 Quest.belongsTo(Questmaster, {
-  foreignKey: "questmasterId",
+  foreignKey: "questMasterId",
   onDelete: "CASCADE",
 });
 
 Questmaster.hasMany(Quest, {
-  foreignKey: "questmasterId",
+  foreignKey: "questMasterId",
 });
 
 Adventurer.belongsTo(Class, {
