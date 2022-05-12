@@ -59,16 +59,13 @@ async function getAdventurer() {
     .then(function () {
       gameMechanics(adventurer, quest);
     })
-    .then(function () {
-      sendBattle(win, battleString, injuryString, damageString, monsterHPStr, adventurerHPStr);
-    });
 }
 
 function gameMechanics(adventurer, quest) {
   var strWinPercentage =
-    (adventurer.strength * adventurer.class.strMultiplier) / 50 + quest.difficulty + (0 - quest.monsterStr / 100);
+  (adventurer.strength * adventurer.class.strMultiplier) / 50 + quest.difficulty + (0 - quest.monsterStr / 100);
   var dexWinPercentage =
-    (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +
+  (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +
     quest.difficulty +
     (0 - quest.monsterDex / 100);
   var intWinPercentage =
@@ -96,7 +93,7 @@ function gameMechanics(adventurer, quest) {
     `I'm in need of some good practice!... and you're in need of a lesson! - You've landed a blow!`,
     `I shall bathe in your blood as I rain hellfire down upon your damned soul!!! - You've landed a blow!`
   ]
-
+  
 
   console.log("adv hit points = " + adventurerHitPoints);
   console.log("monster hitpoints " + monsterHitPoints);
@@ -135,7 +132,7 @@ function gameMechanics(adventurer, quest) {
     }
     console.log('test');
   }
-
+  
   if (monsterHitPoints < 1) {
     win = true;
   } else {
@@ -153,7 +150,8 @@ function gameMechanics(adventurer, quest) {
   console.log("injuries sustained in battle = " + injuryString);
   console.log("The battle itself: " + battleString);
   console.log("win: " + win);
-
+  
+  sendBattle(win, battleString, injuryString, damageString, monsterHPStr, adventurerHPStr);
 }
 
 function adventChoiceHandler(e) {
@@ -183,9 +181,10 @@ async function sendBattle( win, battle, injuries, damage, monsterHP, adventurerH
       adventurerHP,
     }),
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
-    },
-  });
+    }
+    })
 }
 
 
