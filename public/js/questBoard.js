@@ -104,8 +104,8 @@ function gameMechanics(adventurer, quest) {
 // EVENT LISTENERS
 // ------------------------------------------------------------------------------------------
 // $("#").on("click", () => {
- 
-getQuest();
+
+//   getQuest();
 
 // });
 
