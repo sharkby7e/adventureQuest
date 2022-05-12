@@ -56,7 +56,7 @@ router.get("/questBoard", async (req, res) => {
   }
 });
 
-router.get("/create", async (req, res) => {
+router.get("/create", auth, async (req, res) => {
   res.render("createQuest");
 });
 
