@@ -26,14 +26,9 @@
         </div>
         <div class="flex-none">
           <ul class="menu menu-horizontal p-0">
-
-            {if logged_out}
-            <li><a href="/signup">SIGN UP</a></li>
-            {/if} {if logged_in}
+            {{#if logged_in}}
             <li><a href="/">LOG OUT</a></li>
-            {/if} {if logged_out}
-            <li><a href="/login">SIGN IN</a></li>
-            {/if}
+            {{/if}} 
           </ul>
         </div>
       </div>
