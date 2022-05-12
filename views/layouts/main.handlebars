@@ -19,7 +19,7 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
 
-  <body>
+  <body class="width-full">
     <header class="text-primary">
       <div class="navbar bg-warning">
         <div class="flex-1">
@@ -30,12 +30,12 @@
             {{#if logged_in}}
               <li><a href="/api/questmasters/logout">LOG OUT</a></li>
             {{else}}
-
             {{/if}}
           </ul>
         </div>
       </div>
     </header>
+    <!-- <br /> -->
 
     <style>
       body { font-family: 'Eagle Lake', cursive; }
