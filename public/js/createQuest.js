@@ -93,8 +93,7 @@ async function createQuest() {
       headers: { 'Content-Type': 'application/json' }
     })
     if (response.ok) {
-      console.log("this worked");
-      // document.location.replace('/questboard');
+      document.location.replace('/questboard');
     } else {
       alert('Failed to send');
     }
@@ -116,9 +115,7 @@ $("#monster").on("change", () => {
   ];
   createNarratives(narratives);
 
-  document.getElementById('id-star-1')
-
-
+  // document.getElementById('id-star-1')
 
 });
 
@@ -153,7 +150,7 @@ $('#create').on('click', async () => {
   }).then(function (response) {
     return response.json();
   }).then(function (data) {
-    console.log(data);
+    // console.log(data);
  });
     description = chosenNarrative();
     monster = monsterSelected;
