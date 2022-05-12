@@ -2,17 +2,17 @@ const router = require("express").Router();
 const { AdventureQuest } = require("../../models");
 const auth = require("../../utils/auth");
 
-router.post("/", async (req, res) => {
-  try {
-    const aq = await AdventureQuest.create({
-      ...req.body,
-    });
-    console.log(aq.get({ plain }));
-    res.status(200).json({ message: `New AdventureQuest created!` });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+// router.post("/", async (req, res) => {
+//   try {
+//     const aq = await AdventureQuest.create({
+//       ...req.body,
+//     });
+//     console.log(aq.get({ plain }));
+//     res.status(200).json({ message: `New AdventureQuest created!` });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 router.put("/:id", async (req, res) => {
   try {
