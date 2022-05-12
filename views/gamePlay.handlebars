@@ -4,23 +4,41 @@
 {{! <img src="../public/assets/questPlay.gif" class="bg-cover"> }}
 
 <section
-  class="hero min-h-screen"
+  class="w-full bg-cover h-screen min-h-screen"
   style="background-image: url(https://thumbs.gfycat.com/FemaleThatInvisiblerail-size_restricted.gif);"
 >
-  <div class="card mx-auto mt-5" style="width: 25rem;">
-    <div class="card-body">
-      <h5 class="card-title text-center">QUEST</h5>
+<div class="grid grid-cols-3 gap-4">
 
-      <p class="card-text">Welcome to your quest good luck!
-      </p>
-      <hr />
-      <span class="card-text text-info">
-        may the gods be on your side
-      </span>
-      <hr />
-      Lets battle!!
+  <div class="grid grid-cols-3 gap-4 place-content-evenly">
+    <div class=" text-5xl">
+      <p id="adventureHP">adventureHP</p>
+       <p id="injuries">injuries</p>
     </div>
   </div>
+
+  <div class="grid grid-cols-3 gap-4 place-content-evenly">
+    <div class="text-5xl">
+      <p id="monsterHP">monsterHP</p>
+      <p id="damage">damage</p>
+    </div>
+  </div>
+
+</div>
+
+<section class="hero min-h-screen">
+  <div class="hero-content text-center">
+    <div class="text-5xl">
+      <p id="outcome">win</p>
+    </div>
+  </div>
+</div>
 </section>
 
 <script src="../js/gamePlay.js"></script>
+</section>
+{{!-- $('#battle').text(battleArr[i]);
+  $('#adventurerHP').text(adventurerHPArr[i]);
+  $('#monsterHP').text(monsterHPArr[i]);
+  $('#damage').text(damageArr[i]);
+  $('#injuries').text(injuryArr[i]);
+  $('#outcome').text(win); --}}

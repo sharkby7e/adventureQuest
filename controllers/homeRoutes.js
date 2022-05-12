@@ -68,6 +68,14 @@ router.get("/h", async (req, res) => {
   res.render("results");
 });
 
+router.get("/create", auth, async (req, res) => {
+  res.render("createQuest", { logged_in: req.session.logged_in });
+});
+
+router.get("/gameplay", async (req, res) => {
+  res.render("gamePlay");
+});
+
 // router.get("/createadventurer", async (req, res) => {
 //   try {
 //     const classData = await Class.findall();
