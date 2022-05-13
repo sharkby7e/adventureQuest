@@ -72,11 +72,11 @@ function createNarratives(arr) {
 async function createQuest() {
   const response = await fetch('/api/quests', {
     method: 'POST',
-    body: JSON.stringify({ difficulty, monster, description, monsterStr, monsterDex, monsterInt, monsterHitPoints }),
+    body: JSON.stringify({ difficulty, monsterSelected, description, monsterStr, monsterDex, monsterInt, monsterHitPoints }),
     headers: { 'Content-Type': 'application/json' }
   })
   if (response.ok) {
-    document.location.replace('/questboard');
+    // document.location.replace('/questboard');
   } else {
     alert('Failed to send');
   }
@@ -132,10 +132,16 @@ $("#monster").on("change", async () => {
     }
 
 
+    console.log(monster)
 
   });
-
+  
+  monster = monsterSelected;
+  console.log(monsterSelected)
+  console.log(chosenMonster)
+  console.log(monster)
 });
+
 
 $('#create').on('click', async () => {
 
@@ -179,6 +185,7 @@ $('#create').on('click', async () => {
 
 
 
+  console.log(monster)
 
   createQuest()
 });
