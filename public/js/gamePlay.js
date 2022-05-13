@@ -17,13 +17,7 @@ var adventurer = [];
 var quest = [];
 
 const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-console.log(adventureQuestIndex)
-// TESTING
-//=================================================================================================
-// const adventureQuestIndex = 1;
-// var questIndex = 0;
-// var adventurerIndex = 0;
-//=================================================================================================
+
 
 
 
@@ -38,17 +32,13 @@ async function getAQIndex() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       let questId = data.questId;
-      console.log(questId);
       let adventurerId = data.adventurerId;
-      console.log(adventurerId);
       getQuest(questId, adventurerId);
     })
 }
 
 async function getQuest(iQ, iA) {
-  console.log(iQ)
   await fetch(`/api/quests/${iQ}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -57,7 +47,6 @@ async function getQuest(iQ, iA) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       let quest = data;
       let adventurerId = iA;
       getAdventurer(adventurerId, quest);
@@ -74,7 +63,6 @@ async function getAdventurer(aId, qData) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       adventurer = data;
     })
     .then(function () {
@@ -96,7 +84,8 @@ function gameMechanics(adventurer, quest) {
 
 
   fightArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
-  adventurerHitPoints = adventurer.strength + adventurer.dexterity + adventurer.intelligence - 40;
+  adventurerHitPointsPersistant = adventurer.strength + adventurer.dexterity + adventurer.intelligence - 30;
+  adventurerHitPoints = adventurer.strength + adventurer.dexterity + adventurer.intelligence - 30;
   adventurerPower = (((strWinPercentage + dexWinPercentage + intWinPercentage) / 3) / 1);
   monsterHitPoints = quest.monsterHitPoints;
 
@@ -115,9 +104,6 @@ function gameMechanics(adventurer, quest) {
     `I shall bathe in your blood as I rain hellfire down upon your damned soul!!! - You've landed a blow!`
   ]
 
-
-  console.log("adv hit points = " + adventurerHitPoints);
-  console.log("monster hitpoints " + monsterHitPoints);
 
   damage = 0;
   injury = 0;
@@ -165,13 +151,18 @@ function gameMechanics(adventurer, quest) {
   damageArr = damageString.split('|');
   injuryArr = injuryString.split('|');
 
+  battleArr.unshift(' ',' ',' ');
+  adventurerHPArr.unshift(' ',' ',' ');
+  monsterHPArr.unshift(' ',' ',' ');
+  damageArr.unshift(' ',' ',' ');
+  injuryArr.unshift(' ',' ',' ');
+
   battleArr.push(' ');
   adventurerHPArr.push(' ');
   monsterHPArr.push(' ');
   damageArr.push(' ');
   injuryArr.push(' ');
-  console.log(battleString);
-  console.log(battleArr);
+
   if (win) { outcome = 'VICTORY!!!' } else { outcome = "Death comes to us all..." }
 
 
@@ -188,48 +179,67 @@ function showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryA
 
 
 function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
+  $('#adventurerName').text(adventurer.name);
+  $('#adventurerHitPoints').text('Total-HP='+adventurerHitPointsPersistant);
+  $('#adventurerStrength').text('Str='+adventurer.strength);
+  $('#adventurerDexterity').text('Dex='+adventurer.dexterity);
+  $('#adventurerIntelligence').text('Int='+adventurer.intelligence);
+  $('#monsterName').text(quest.monster);
+  $('#monsterHitPoints').text(quest.monsterHitPoints+'=HP-Total');
+  $('#monsterStr').text(quest.monsterStr+'=Str');
+  $('#monsterDex').text(quest.monsterDex+'=Dex');
+  $('#monsterInt').text(quest.monsterInt+'=Int');
+        $('#outcome').text('');
+        $('#adventurerSwing').text('');
+        $('#adventurerSpeak').text('');
+        $('#monsterSwing').text('');
+        $('#monsterSpeak').text('');
+        $('#battle').text('FIGHT!!!');
+
   battle = setInterval(function () {
     Duration--;
-    console.log('round ' + i)
     if (Duration === 0) {
       clearInterval(battle);
-      console.log("Out of time...");
     } else {
-
-      if (i === battleArr.length - 2) {
-        $('#battle').text('');
-        $('#adventurerHP').text('');
-        $('#monsterHP').text('');
-        $('#damage').text('');
-        $('#injuries').text('');
-        $('#outcome').text(outcome);
-        $('#back-to-questboard').append('<button>').attr({ id: 'results' })
-        return;
-      } else {
+      if (i < battleArr.length - 2) {
         $('#battle').text(battleArr[i]);
-        $('#adventurerHP').text(adventurerHPArr[i]);
-        $('#monsterHP').text(monsterHPArr[i]);
+        $('#adventurerHP').text('Remaining HP = '+adventurerHPArr[i]);
+        $('#monsterHP').text(monsterHPArr[i]+' = HP Remaining');
         $('#damage').text(damageArr[i]);
         $('#injuries').text(injuryArr[i]);
-        $('#outcome').text('');
-        i = i + 1;
-      }
+        if (damageArr[i] === ' ') {
+          $('#adventurerSwing').text("miss...");
+          $('#adventurerSpeak').text("ARGH!");
+          $('#monsterSwing').text("HIT!");
+          $('#monsterSpeak').text("HAHA!");
+        } else {
+          $('#adventurerSwing').text("HIT!");
+          $('#adventurerSpeak').text("HAHA!");
+          $('#monsterSwing').text("miss...");
+          $('#monsterSpeak').text("ARGH!");
+        }
+      } else if (i > battleArr.length - 3) {
+        $('#adventurerSwing').text('');
+        $('#adventurerSpeak').text('');
+        $('#monsterSwing').text('');
+        $('#monsterSpeak').text('');
+        $('#damage').text('');
+        $('#injuries').text('');
+        $('#battle').text('');
+        $('#outcome').text(outcome);
+        }
+      i = i + 1;
     }
-console.log(interval);
   }, interval);
+
+  $('#outcome').text(outcome);
+        if ($('#back-to-questboard')) {
+          $('#back-to-questboard').empty();
+          $('#back-to-questboard').append('<button>').attr({ id: 'results' });
+        } else {
+          $('#results-container').append($('<div>').attr({ id: 'back-to-questboard' }).append('<button>').attr({ id: 'results' }).text('Results'));
+      }
 }
-
-
-
-
-// 
-
-
-
-
-
-
-
 
 
 
