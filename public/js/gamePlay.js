@@ -144,7 +144,6 @@ function gameMechanics(adventurer, quest) {
         i = i + 1;
       }
     }
-    console.log('test');
   }
 
   if (monsterHitPoints < 1) {
@@ -152,18 +151,6 @@ function gameMechanics(adventurer, quest) {
   } else {
     win = false;
   }
-
-  console.log("str win %: " + strWinPercentage);
-  console.log("dex win %: " + dexWinPercentage);
-  console.log("int win %: " + intWinPercentage);
-  console.log("fightArray: " + fightArray);
-
-  console.log("adv hit points = " + adventurerHPStr);
-  console.log("monster hitpoints " + monsterHPStr);
-  console.log("damage dealt = " + damageString);
-  console.log("injuries sustained in battle = " + injuryString);
-  console.log("The battle itself: " + battleString);
-  console.log("win: " + win);
 
   battleArr = battleString.split('|');
   adventurerHPArr = adventurerHPStr.split('|');
@@ -187,18 +174,18 @@ function gameMechanics(adventurer, quest) {
 
 function showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
   let videoDurationInSecs = 44;
-  console.log((videoDurationInSecs * 1000) / battleArr.length)
+  let interval = Math.floor((videoDurationInSecs * 1000) / battleArr.length);
   let i = 0;
-  initiateGamePlay(videoDurationInSecs, videoDurationInSecs, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
+  initiateGamePlay(i, interval, videoDurationInSecs, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
 }
 
 
-function initiateGamePlay(i, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
-  timerInterval = setInterval(function () {
+function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
+  battle = setInterval(function () {
     Duration--;
-
+    console.log('round ' + i)
     if (Duration === 0) {
-      clearInterval(timerInterval);
+      clearInterval(battle);
       console.log("Out of time...");
     } else {
 
@@ -221,8 +208,8 @@ function initiateGamePlay(i, Duration, battleArr, adventurerHPArr, monsterHPArr,
         i = i + 1;
       }
     }
-
-  }, 1000);
+console.log(interval);
+  }, interval);
 }
 
 
