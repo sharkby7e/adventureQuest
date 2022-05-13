@@ -211,10 +211,10 @@ function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, mon
           $('#adventurerSwing').text("miss...");
           $('#adventurerSpeak').text("ARGH!");
           $('#monsterSwing').text("HIT!");
-          $('#monsterSpeak').text("HAHA!");
+          $('#monsterSpeak').text("HUZZAH!!!");
         } else {
           $('#adventurerSwing').text("HIT!");
-          $('#adventurerSpeak').text("HAHA!");
+          $('#adventurerSpeak').text("HUZZAH!!!");
           $('#monsterSwing').text("miss...");
           $('#monsterSpeak').text("ARGH!");
         }
