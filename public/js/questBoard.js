@@ -38,11 +38,10 @@ const getAid = () => {
   return chosenAdv.text();
 };
 
+//run adventure quest
 adventureQuest.on("click", async () => {
   aid = await getAid();
   qid = await getQid();
-  console.log(aid);
-  console.log(qid);
   const res = await fetch(`api/adventurequest`, {
     method: "POST",
     body: JSON.stringify({ adventurerId: aid, questId: qid }),
@@ -52,9 +51,6 @@ adventureQuest.on("click", async () => {
   });
   if (res.ok) {
     res.json().then((data) => {
-      console.log(data.pk);
-      console.log(data.pk.id);
-      console.log("nice");
       const aq = data.pk.id;
       document.location.replace(`gameplay/${aq}`);
     });
