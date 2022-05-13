@@ -151,11 +151,11 @@ function gameMechanics(adventurer, quest) {
   damageArr = damageString.split('|');
   injuryArr = injuryString.split('|');
 
-  battleArr.unshift(' ',' ',' ');
-  adventurerHPArr.unshift(' ',' ',' ');
-  monsterHPArr.unshift(' ',' ',' ');
-  damageArr.unshift(' ',' ',' ');
-  injuryArr.unshift(' ',' ',' ');
+  battleArr.unshift(' ', ' ', ' ');
+  adventurerHPArr.unshift(' ', ' ', ' ');
+  monsterHPArr.unshift(' ', ' ', ' ');
+  damageArr.unshift(' ', ' ', ' ');
+  injuryArr.unshift(' ', ' ', ' ');
 
   battleArr.push(' ');
   adventurerHPArr.push(' ');
@@ -180,21 +180,21 @@ function showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryA
 
 function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
   $('#adventurerName').text(adventurer.name);
-  $('#adventurerHitPoints').text('Total-HP='+adventurerHitPointsPersistant);
-  $('#adventurerStrength').text('Str='+adventurer.strength);
-  $('#adventurerDexterity').text('Dex='+adventurer.dexterity);
-  $('#adventurerIntelligence').text('Int='+adventurer.intelligence);
+  $('#adventurerHitPoints').text('Total-HP=' + adventurerHitPointsPersistant);
+  $('#adventurerStrength').text('Str=' + adventurer.strength);
+  $('#adventurerDexterity').text('Dex=' + adventurer.dexterity);
+  $('#adventurerIntelligence').text('Int=' + adventurer.intelligence);
   $('#monsterName').text(quest.monster);
-  $('#monsterHitPoints').text(quest.monsterHitPoints+'=HP-Total');
-  $('#monsterStr').text(quest.monsterStr+'=Str');
-  $('#monsterDex').text(quest.monsterDex+'=Dex');
-  $('#monsterInt').text(quest.monsterInt+'=Int');
-        $('#outcome').text('');
-        $('#adventurerSwing').text('');
-        $('#adventurerSpeak').text('');
-        $('#monsterSwing').text('');
-        $('#monsterSpeak').text('');
-        $('#battle').text('FIGHT!!!');
+  $('#monsterHitPoints').text(quest.monsterHitPoints + '=HP-Total');
+  $('#monsterStr').text(quest.monsterStr + '=Str');
+  $('#monsterDex').text(quest.monsterDex + '=Dex');
+  $('#monsterInt').text(quest.monsterInt + '=Int');
+  $('#outcome').text('');
+  $('#adventurerSwing').text('');
+  $('#adventurerSpeak').text('');
+  $('#monsterSwing').text('');
+  $('#monsterSpeak').text('');
+  $('#battle').text('FIGHT!!!');
 
   battle = setInterval(function () {
     Duration--;
@@ -203,8 +203,8 @@ function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, mon
     } else {
       if (i < battleArr.length - 2) {
         $('#battle').text(battleArr[i]);
-        $('#adventurerHP').text('Remaining HP = '+adventurerHPArr[i]);
-        $('#monsterHP').text(monsterHPArr[i]+' = HP Remaining');
+        $('#adventurerHP').text('Remaining HP = ' + adventurerHPArr[i]);
+        $('#monsterHP').text(monsterHPArr[i] + ' = HP Remaining');
         $('#damage').text(damageArr[i]);
         $('#injuries').text(injuryArr[i]);
         if (damageArr[i] === ' ') {
@@ -227,17 +227,17 @@ function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, mon
         $('#injuries').text('');
         $('#battle').text('');
         $('#outcome').text(outcome);
-        }
+      }
       i = i + 1;
     }
   }, interval);
 
-        if ($('#back-to-questboard')) {
-          $('#back-to-questboard').empty();
-          $('#back-to-questboard').append('<button>').attr({ id: 'results' });
-        } else {
-          $('#results-container').append($('<div>').attr({ id: 'back-to-questboard' }).append('<button>').attr({ id: 'results' }).text('Results'));
-      }
+  if ($('#back-to-questboard')) {
+    $('#back-to-questboard').empty();
+    $('#back-to-questboard').append('<button>').attr({ id: 'results' });
+  } else {
+    $('#results-container').append($('<div>').attr({ id: 'back-to-questboard' }).append('<button>').attr({ id: 'results' }).text('Results'));
+  }
 }
 
 
@@ -249,6 +249,7 @@ function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, mon
 $("#results").on("click", (e) => {
   e.preventDefault();
   window.location.href = '/results';
+  document.location.replace('/questboard');
 });
 
 

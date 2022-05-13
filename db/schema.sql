@@ -1,2 +1,5 @@
-DROP DATABASE IF EXISTS adventure_db;
-CREATE DATABASE adventure_db;
+-- DROP DATABASE IF EXISTS adventure_db;
+-- CREATE DATABASE adventure_db;
+
+DROP DATABASE IF EXISTS wv3hul5rjj187xbi;
+CREATE DATABASE wv3hul5rjj187xbi;

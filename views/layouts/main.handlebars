@@ -16,22 +16,31 @@
       rel="stylesheet"
       type="text/css"
     />
-<link rel="shortcut icon" href="#">
-    {{!-- <link rel="icon" type="image/x-icon" href="img/favicon.ico" /> --}}
+    <link rel="shortcut icon" href="#" />
+    {{! <link rel="icon" type="image/x-icon" href="img/favicon.ico" /> }}
   </head>
+
   <style>
     body { font-family: 'Eagle Lake', cursive; }
   </style>
 
+<<<<<<< HEAD
   <body class="width-full max-h-screen"> 
     
   <header class="text-primary">
     <div class="navbar bg-warning">
       <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="/">ADVENTURE QUEST</a>
+=======
+  <!-- <body class="width-full max-h-screen"> -->
+  <header class="text-primary justify-center align-center text-center">
+    <div class="navbar bg-warning justify-center align-center text-center">
+      <div class="flex-1 justify-center align-center text-center">
+        <a class="btn btn-ghost normal-case text-xl justify-center align-center text-center" href="/">ADVENTURE QUEST</a>
+>>>>>>> 7b36addc9ff3cbcb16e095f89dbab7a9f3f90f1c
       </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal p-0">
+      <div class="flex-none justify-center align-center text-center">
+        <ul class="menu menu-horizontal p-0 justify-center align-center text-center">
           {{#if logged_in}}
             <li><a href="/api/questmasters/logout">LOG OUT</a></li>
           {{else}}
