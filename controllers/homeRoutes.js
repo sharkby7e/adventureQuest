@@ -68,38 +68,9 @@ router.get("/h", async (req, res) => {
   res.render("results");
 });
 
-router.get("/create", auth, async (req, res) => {
-  res.render("createQuest", { logged_in: req.session.logged_in });
-});
-
 router.get("/gameplay", async (req, res) => {
   res.render("gamePlay");
 });
-
-// router.get("/createadventurer", async (req, res) => {
-//   try {
-//     const classData = await Class.findall();
-//     console.log(classData)
-//     res.json(classData)
-//     // const classes = classData.map((type) =>
-//     //   type.get({ plain: true })
-//     // )
-//     // res.render("createAdventurer", {classes, logged_in: req.session.logged_in });
-//   } catch (err) {
-//     console.log("Error fetching data");
-//   }
-// });
-
-// router.get('/createadventure', async (req, res) => {
-//   try {
-//     const classData = await Class.findall({
-//       include: [{ attributes: [type] }],
-//     });
-//     res.render(createAdventurer, { logged_in: req.session.logged_in });
-//   } catch (err) {
-//     console.log('Error fetching data');
-//   }
-// });
 
 router.get("/createadventurer", async (req, res) => {
   try {
@@ -112,19 +83,8 @@ router.get("/createadventurer", async (req, res) => {
   }
 });
 
-// router.get('/p',async(req,res)=>{
-//   try{
-// res.json('hello')
-//   }catch(err){
-//     res.status(400).json(err)
-
-//   }
-// })
-
 router.get("/gameplay/:id", async (req, res) => {
   res.render("gamePlay");
 });
-
-
 
 module.exports = router;

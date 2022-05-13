@@ -1,72 +1,103 @@
 {{!-- <!DOCTYPE html> --}}
 
-<div 
-class="hero min-h-screen" 
-style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-world-map-pirate-ship-compass-dragons-old-paper-texture-vintage-fantasy-world-map-pirate-ship-compass-146156918.jpg);"
->
+<body 
+  class="hero min-h-screen" 
+  style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-world-map-pirate-ship-compass-dragons-old-paper-texture-vintage-fantasy-world-map-pirate-ship-compass-146156918.jpg);"
+  >
 
-<div class="flex justify-start">
+  <div class="flex w-full justify-center">
+    <div class="card w-4/6 bg-base-100 shadow-xl justify-evenly">
+      <div class="card-body">
+        <h2 class="text-warning text-5xl card-title">CREATE AN ADVENTURER</h2>
+        <br>
+        <form>
+          <label for="newAdvName">What is your Adventurer Name?</label><br>
+          <input id= "newAdvName" type="text" placeholder="NAME" class="input input-bordered w-full my-4 max-w-xs" /></form>
+        <p>Select a Class</p>
+        <select class="my-4 select select-bordered w-full max-w-xs" id="classAdv">
+          {{#each classes}}
+          {{>createAdvenDisplay}}
+          {{/each}}
+        </select>
 
-<div class="card w-96 bg-base-100 shadow-xl justify-evenly">
-  <div class="card-body">
-    <h2 class="card-title">CREATE A CHARCTER</h2>
-    <select class="select select-bordered w-full max-w-xs" id="classAdv">
-  <option disabled selected>CLASS</option>
-  {{#each classes}}
- {{>createAdvenDisplay}}
-  {{/each}}
-</select>
-{{!-- {{#each adventurer}}
-{{>createAdvenDisplay}}
-{{/each}} --}}
-<input type="text" placeholder="NAME" class="input input-bordered w-full max-w-xs" />
+        <div id="stats">
+          <p>STRENGTH</p>
+          <div class="rating" id="strength">
+            <input id="strength-1" type="radio" name="rating-1" value="1" class="mask mask-star" />
+            <input id="strength-2" type="radio" name="rating-1" value="2" class="mask mask-star" />
+            <input id="strength-3" type="radio" name="rating-1" value="3" class="mask mask-star" />
+            <input id="strength-4" type="radio" name="rating-1" value="4" class="mask mask-star" />
+            <input id="strength-5" type="radio" name="rating-1" value="5" class="mask mask-star" checked />
+            <input id="strength-6" type="radio" name="rating-1" value="6" class="mask mask-star" />
+            <input id="strength-7" type="radio" name="rating-1" value="7" class="mask mask-star" />
+            <input id="strength-8" type="radio" name="rating-1" value="8" class="mask mask-star" />
+            <input id="strength-9" type="radio" name="rating-1" value="9" class="mask mask-star" />
+            <input id="strength-10" type="radio" name="rating-1" value="10" class="mask mask-star" />
+          </div>
 
-  <p>STRENGTH</p>
-<div class="rating" id="strength">
-  <input id="strength-1" type="radio" name="rating-1" value="1" class="mask mask-star" />
-  <input id="strength-2" type="radio" name="rating-1" value="2" class="mask mask-star" />
-  <input id="strength-3" type="radio" name="rating-1" value="3" class="mask mask-star" />
-  <input id="strength-4" type="radio" name="rating-1" value="4" class="mask mask-star" />
-  <input id="strength-5" type="radio" name="rating-1" value="5" class="mask mask-star" checked />
-  <input id="strength-6" type="radio" name="rating-1" value="6" class="mask mask-star" />
-  <input id="strength-7" type="radio" name="rating-1" value="7" class="mask mask-star" />
-  <input id="strength-8" type="radio" name="rating-1" value="8" class="mask mask-star" />
-  <input id="strength-9" type="radio" name="rating-1" value="9" class="mask mask-star" />
-  <input id="strength-10" type="radio" name="rating-1" value="10" class="mask mask-star" />
-</div>
-  <p>INTELLIGENCE</p>
-<div class="rating" id="intelligence">
-  <input id="intellegence-1" type="radio" name="rating-2" value="1" class="mask mask-star" />
-  <input id="intellegence-2" type="radio" name="rating-2" value="2" class="mask mask-star" />
-  <input id="intellegence-3" type="radio" name="rating-2" value="3" class="mask mask-star" />
-  <input id="intellegence-4" type="radio" name="rating-2" value="4" class="mask mask-star" />
-  <input id="intellegence-5" type="radio" name="rating-2" value="5" class="mask mask-star" checked/>
-  <input id="intellegence-6" type="radio" name="rating-2" value="6" class="mask mask-star" />
-  <input id="intellegence-7" type="radio" name="rating-2" value="7" class="mask mask-star" />
-  <input id="intellegence-8" type="radio" name="rating-2" value="8" class="mask mask-star" />
-  <input id="intellegence-9" type="radio" name="rating-2" value="9" class="mask mask-star" />
-  <input id="intellegence-10" type="radio" name="rating-2" value="10" class="mask mask-star" />
-</div>
-  <p>DEXTERITY</p>
-<div class="rating" id="dexterity">
-  <input id="dexterity-1" type="radio" name="rating-3" value="1" class="mask mask-star" />
-  <input id="dexterity-2" type="radio" name="rating-3" value="2" class="mask mask-star" />
-  <input id="dexterity-3" type="radio" name="rating-3" value="3" class="mask mask-star" />
-  <input id="dexterity-4" type="radio" name="rating-3" value="4" class="mask mask-star" />
-  <input id="dexterity-5" type="radio" name="rating-3" value="5" class="mask mask-star" checked />
-  <input id="dexterity-6" type="radio" name="rating-3" value="6" class="mask mask-star" />
-  <input id="dexterity-7" type="radio" name="rating-3" value="7" class="mask mask-star" />
-  <input id="dexterity-8" type="radio" name="rating-3" value="8" class="mask mask-star" />
-  <input id="dexterity-9" type="radio" name="rating-3" value="9" class="mask mask-star" />
-  <input id="dexterity-10" type="radio" name="rating-3" value="10" class="mask mask-star"/>
-</div>
+          <p>INTELLIGENCE</p>
+          <div class="rating" id="intelligence">
+            <input id="intellegence-1" type="radio" name="rating-2" value="1" class="mask mask-star" />
+            <input id="intellegence-2" type="radio" name="rating-2" value="2" class="mask mask-star" />
+            <input id="intellegence-3" type="radio" name="rating-2" value="3" class="mask mask-star" />
+            <input id="intellegence-4" type="radio" name="rating-2" value="4" class="mask mask-star" />
+            <input id="intellegence-5" type="radio" name="rating-2" value="5" class="mask mask-star" checked/>
+            <input id="intellegence-6" type="radio" name="rating-2" value="6" class="mask mask-star" />
+            <input id="intellegence-7" type="radio" name="rating-2" value="7" class="mask mask-star" />
+            <input id="intellegence-8" type="radio" name="rating-2" value="8" class="mask mask-star" />
+            <input id="intellegence-9" type="radio" name="rating-2" value="9" class="mask mask-star" />
+            <input id="intellegence-10" type="radio" name="rating-2" value="10" class="mask mask-star" />
+          </div>
 
-    <div class="card-actions justify-end">
-      <a href="/questboard"<button class="btn btn-primary" type="submit" id="bubba">CREATE</button></a>
+          <p>DEXTERITY</p>
+          <div class="rating" id="dexterity">
+            <input id="dexterity-1" type="radio" name="rating-3" value="1" class="mask mask-star" />
+            <input id="dexterity-2" type="radio" name="rating-3" value="2" class="mask mask-star" />
+            <input id="dexterity-3" type="radio" name="rating-3" value="3" class="mask mask-star" />
+            <input id="dexterity-4" type="radio" name="rating-3" value="4" class="mask mask-star" />
+            <input id="dexterity-5" type="radio" name="rating-3" value="5" class="mask mask-star" checked />
+            <input id="dexterity-6" type="radio" name="rating-3" value="6" class="mask mask-star" />
+            <input id="dexterity-7" type="radio" name="rating-3" value="7" class="mask mask-star" />
+            <input id="dexterity-8" type="radio" name="rating-3" value="8" class="mask mask-star" />
+            <input id="dexterity-9" type="radio" name="rating-3" value="9" class="mask mask-star" />
+            <input id="dexterity-10" type="radio" name="rating-3" value="10" class="mask mask-star"/>
+          </div>
+        </div>
+
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary" id="bubba">Create Adventurer</button>
+        </div>
+
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-</div>
+</body>
 
-<script src="../public/js/character.js"></script>
+<script src="../js/createAdventurer.js"></script>
+
+<!-- <div class="w-full max-w-xs"> -->
+<!-- <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"> -->
+<!--   <div class="mb-4"> -->
+<!--     <label class="block text-gray-700 text-sm font-bold mb-2" for="username"> -->
+<!--       Username -->
+<!--     </label> -->
+<!--     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"> -->
+<!--   </div> -->
+<!--   <div class="mb-6"> -->
+<!--     <label class="block text-gray-700 text-sm font-bold mb-2" for="password"> -->
+<!--       Password -->
+<!--     </label> -->
+<!--     <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"> -->
+<!--     <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
+<!--   </div> -->
+<!--   <div class="flex items-center justify-between"> -->
+<!--     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"> -->
+<!--       Sign In -->
+<!--     </button> -->
+<!---->
+<!--   </div> -->
+<!-- </form> -->
+
+
