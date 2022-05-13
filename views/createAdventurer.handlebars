@@ -1,6 +1,6 @@
 {{!-- <!DOCTYPE html> --}}
 
-<body 
+<div 
   class="hero min-h-screen" 
   style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-world-map-pirate-ship-compass-dragons-old-paper-texture-vintage-fantasy-world-map-pirate-ship-compass-146156918.jpg);"
   >
@@ -11,6 +11,8 @@
         <h2 class="text-warning text-5xl card-title">CREATE AN ADVENTURER</h2>
         <br>
         <form>
+          <label for="newAdvTitle">What is your Title?</label><br>
+          <input id= "newAdvTitle" type="text" placeholder="Title" class="input input-bordered w-full my-4 max-w-xs" /></form>
           <label for="newAdvName">What is your Adventurer Name?</label><br>
           <input id= "newAdvName" type="text" placeholder="NAME" class="input input-bordered w-full my-4 max-w-xs" /></form>
         <p>Select a Class</p>
@@ -73,7 +75,7 @@
     </div>
   </div>
 
-</body>
+</div>
 
 <script src="../js/createAdventurer.js"></script>
 
