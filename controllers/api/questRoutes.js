@@ -31,7 +31,6 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
     const questMasterId = req.session.questMasterId;
     const quest = await Quest.create({
       ...req.body,

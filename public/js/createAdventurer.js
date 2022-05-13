@@ -2,6 +2,9 @@ console.log("script is linked");
 
 var selectedClass;
 var advName;
+var str;
+var dex;
+var int;
 
 
 
@@ -11,16 +14,16 @@ $("#classAdv").on("change", async () => {
   console.log(selectedClass);
 });
 
-// async function createBubba(Class, Strength, Dexterity, Intelligence, Name) {
-//   try {
-//     const bubba = await fetch("api/adventurer", {
-//       method: "Post",
-//       body: json.stringify({ Class, Strength, Dexterity, Intelligence, Name }),
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// }
+async function createBubba(Class, Strength, Dexterity, Intelligence, Name) {
+  try {
+    const bubba = await fetch("api/adventurer", {
+      method: "Post",
+      body: json.stringify({ Class, Strength, Dexterity, Intelligence, Name }),
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
 
 $("#create").on("click", (e) => {
   e.preventDefault();
@@ -30,22 +33,22 @@ $("#create").on("click", (e) => {
   createBubba(advName, selectedClass);
 });
 
-$("document").on("keyup", (e) => {
+
+$("#str").on("change", (e) => {
   e.preventDefault;
   str = $('#str').val();
-  dex = $('#dex').val();
-  int = $('#int').val();
-  console.log(str, dex, int)
-
-  console.log("click");
-  // const strengths = $("#strength").children();
-});
-
-
-$("str").on("keyup", (e) => {
-  e.preventDefault;
-  str = $('#str').val();
+  pntsAvail = $('#PntsAvail').text()
   console.log(str)
+});
+$("#dex").on("change", (e) => {
+  e.preventDefault;
+  dex = $('#dex').val();
+  console.log(dex)
+});
+$("#int").on("change", (e) => {
+  e.preventDefault;
+  int = $('#int').val();
+  console.log(int)
 });
 
 
