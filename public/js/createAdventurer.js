@@ -1,8 +1,9 @@
 console.log("script is linked");
 
-let selectedClass;
-const bubba = $("#bubba");
-const stats = $("#stats");
+var selectedClass;
+var advName;
+
+
 
 // User selects Class
 $("#classAdv").on("change", async () => {
@@ -21,20 +22,32 @@ $("#classAdv").on("change", async () => {
 //   }
 // }
 
-bubba.on("click", (e) => {
+$("#create").on("click", (e) => {
   e.preventDefault();
   console.log("click");
-  const name = document.getElementById(`newAdvName`).value.trim(); // const text = document.querySelector('input[id="newAdvName"]').value.trim();
-  console.log(name);
-  createBubba(name, selectedClass);
+  advName = document.getElementById(`newAdvName`).value.trim(); // const text = document.querySelector('input[id="newAdvName"]').value.trim();
+  console.log(advName);
+  createBubba(advName, selectedClass);
 });
 
-stats.on("click", (e) => {
+$("document").on("keyup", (e) => {
   e.preventDefault;
+  str = $('#str').val();
+  dex = $('#dex').val();
+  int = $('#int').val();
+  console.log(str, dex, int)
+
   console.log("click");
-  const strengths = $("#strength").children();
-  console.log(strengths);
+  // const strengths = $("#strength").children();
 });
+
+
+$("str").on("keyup", (e) => {
+  e.preventDefault;
+  str = $('#str').val();
+  console.log(str)
+});
+
 
 function picker(maxPicks) {
   var checkedCount = 0;

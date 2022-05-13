@@ -1,20 +1,19 @@
-{{!-- <!DOCTYPE html> --}}
+{{!--
+<!DOCTYPE html> --}}
 
-<div 
-  class="hero min-h-screen" 
-  style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-world-map-pirate-ship-compass-dragons-old-paper-texture-vintage-fantasy-world-map-pirate-ship-compass-146156918.jpg);"
-  >
+<body class="hero min-h-screen"
+  style="background-image: url(https://thumbs.dreamstime.com/b/vintage-fantasy-world-map-pirate-ship-compass-dragons-old-paper-texture-vintage-fantasy-world-map-pirate-ship-compass-146156918.jpg);">
 
   <div class="flex w-full justify-center">
-    <div class="card w-4/6 bg-base-100 shadow-xl justify-evenly">
+    <div class="card w-5/12 bg-base-100 shadow-xl justify-evenly">
       <div class="card-body">
-        <h2 class="text-warning text-5xl card-title">CREATE AN ADVENTURER</h2>
+        <h2 class="text-warning text-5xl card-title text-center">CREATE AN</h2><br>
+        <h2 class="text-warning text-5xl card-title text-center">ADVENTURER</h2>
         <br>
         <form>
-          <label for="newAdvTitle">What is your Title?</label><br>
-          <input id= "newAdvTitle" type="text" placeholder="Title" class="input input-bordered w-full my-4 max-w-xs" /></form>
           <label for="newAdvName">What is your Adventurer Name?</label><br>
-          <input id= "newAdvName" type="text" placeholder="NAME" class="input input-bordered w-full my-4 max-w-xs" /></form>
+          <input id="newAdvName" type="text" placeholder="NAME" class="input input-bordered w-full my-4 max-w-xs" />
+        </form>
         <p>Select a Class</p>
         <select class="my-4 select select-bordered w-full max-w-xs" id="classAdv">
           {{#each classes}}
@@ -22,52 +21,51 @@
           {{/each}}
         </select>
 
-        <div id="stats">
-          <p>STRENGTH</p>
-          <div class="rating" id="strength">
-            <input id="strength-1" type="radio" name="rating-1" value="1" class="mask mask-star" />
-            <input id="strength-2" type="radio" name="rating-1" value="2" class="mask mask-star" />
-            <input id="strength-3" type="radio" name="rating-1" value="3" class="mask mask-star" />
-            <input id="strength-4" type="radio" name="rating-1" value="4" class="mask mask-star" />
-            <input id="strength-5" type="radio" name="rating-1" value="5" class="mask mask-star" checked />
-            <input id="strength-6" type="radio" name="rating-1" value="6" class="mask mask-star" />
-            <input id="strength-7" type="radio" name="rating-1" value="7" class="mask mask-star" />
-            <input id="strength-8" type="radio" name="rating-1" value="8" class="mask mask-star" />
-            <input id="strength-9" type="radio" name="rating-1" value="9" class="mask mask-star" />
-            <input id="strength-10" type="radio" name="rating-1" value="10" class="mask mask-star" />
+
+        <div class="table">
+
+          <div class="table-row">
+            <span id="PntsAvail" class="text-warning table-cell text-center">15</span>
+            <span class="text-accent-focus table-cell text-center"> / </span>
+            <span id="PntsRemain" class="text-warning table-cell text-center">15</span>
           </div>
 
-          <p>INTELLIGENCE</p>
-          <div class="rating" id="intelligence">
-            <input id="intellegence-1" type="radio" name="rating-2" value="1" class="mask mask-star" />
-            <input id="intellegence-2" type="radio" name="rating-2" value="2" class="mask mask-star" />
-            <input id="intellegence-3" type="radio" name="rating-2" value="3" class="mask mask-star" />
-            <input id="intellegence-4" type="radio" name="rating-2" value="4" class="mask mask-star" />
-            <input id="intellegence-5" type="radio" name="rating-2" value="5" class="mask mask-star" checked/>
-            <input id="intellegence-6" type="radio" name="rating-2" value="6" class="mask mask-star" />
-            <input id="intellegence-7" type="radio" name="rating-2" value="7" class="mask mask-star" />
-            <input id="intellegence-8" type="radio" name="rating-2" value="8" class="mask mask-star" />
-            <input id="intellegence-9" type="radio" name="rating-2" value="9" class="mask mask-star" />
-            <input id="intellegence-10" type="radio" name="rating-2" value="10" class="mask mask-star" />
+
+          <div class="table-row">
+            <p class="table-cell text-center">.</p>
+            <p class="table-cell text-center">.</p>
+            <p class="table-cell text-center">.</p>
           </div>
 
-          <p>DEXTERITY</p>
-          <div class="rating" id="dexterity">
-            <input id="dexterity-1" type="radio" name="rating-3" value="1" class="mask mask-star" />
-            <input id="dexterity-2" type="radio" name="rating-3" value="2" class="mask mask-star" />
-            <input id="dexterity-3" type="radio" name="rating-3" value="3" class="mask mask-star" />
-            <input id="dexterity-4" type="radio" name="rating-3" value="4" class="mask mask-star" />
-            <input id="dexterity-5" type="radio" name="rating-3" value="5" class="mask mask-star" checked />
-            <input id="dexterity-6" type="radio" name="rating-3" value="6" class="mask mask-star" />
-            <input id="dexterity-7" type="radio" name="rating-3" value="7" class="mask mask-star" />
-            <input id="dexterity-8" type="radio" name="rating-3" value="8" class="mask mask-star" />
-            <input id="dexterity-9" type="radio" name="rating-3" value="9" class="mask mask-star" />
-            <input id="dexterity-10" type="radio" name="rating-3" value="10" class="mask mask-star"/>
+
+          <div class="table-row">
+            <p class="table-cell text-center">STR</p>
+            <p class="table-cell text-center">DEX</p>
+            <p class="table-cell text-center">INT</p>
           </div>
+
+
+          <div id="stats" class="table-row">
+            <form class="table-cell"><span>
+                <input id="str" type="number" placeholder="str"
+                  class="input input-bordered w-11/12 max-w-xs text-center" /></span>
+            </form>
+            <form class="table-cell">
+              <input id="dex" type="number" placeholder="dex"
+                class="input input-bordered w-11/12 max-w-xs text-center" />
+            </form>
+            <form class="table-cell">
+              <input id="int" type="number" placeholder="int"
+                class="input input-bordered w-11/12 max-w-xs text-center" />
+            </form>
+          </div>
+
         </div>
 
+
+
         <div class="card-actions justify-end">
-          <button class="btn btn-primary" id="bubba">Create Adventurer</button>
+          <button class="btn btn-primary" id="create">Create Adventurer</button>
         </div>
 
         </form>
@@ -75,7 +73,7 @@
     </div>
   </div>
 
-</div>
+</body>
 
 <script src="../js/createAdventurer.js"></script>
 
@@ -101,5 +99,3 @@
 <!---->
 <!--   </div> -->
 <!-- </form> -->
-
-
