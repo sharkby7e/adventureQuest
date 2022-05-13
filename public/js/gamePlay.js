@@ -11,16 +11,18 @@ var adventurerPower;
 var monsterHPStr = '';
 var outcome;
 var battleString = '';
+var questId;
+var adventurerId;
 var adventurer = [];
 var quest = [];
 
-// const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-
+const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+console.log(adventureQuestIndex)
 // TESTING
 //=================================================================================================
-const adventureQuestIndex = 1;
-var questIndex = 0;
-var adventurerIndex = 0;
+// const adventureQuestIndex = 1;
+// var questIndex = 0;
+// var adventurerIndex = 0;
 //=================================================================================================
 
 
@@ -37,14 +39,17 @@ async function getAQIndex() {
     })
     .then(function (data) {
       console.log(data);
-      // questIndex = data.questId; ================================== TESTING
-      // adventurerIndex = data.adventurerId; ================================== TESTING
+      let questId = data.questId;
+      console.log(questId);
+      let adventurerId = data.adventurerId;
+      console.log(adventurerId);
+      getQuest(questId, adventurerId);
     })
-    .then(getQuest(questIndex, adventurerIndex));
 }
 
-async function getQuest(iQuest, iAdv) {
-  await fetch(`/api/quests/`, {
+async function getQuest(iQ, iA) {
+  console.log(iQ)
+  await fetch(`/api/quests/${iQ}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -53,13 +58,15 @@ async function getQuest(iQuest, iAdv) {
     })
     .then(function (data) {
       console.log(data);
-      quest = data.allQuests[iQuest];
+      let quest = data;
+      let adventurerId = iA;
+      getAdventurer(adventurerId, quest);
     })
-    .then(getAdventurer(iAdv));
 }
 
-async function getAdventurer(advId) {
-  await fetch(`/api/adventurer`, {
+async function getAdventurer(aId, qData) {
+  quest = qData;
+  await fetch(`/api/adventurer/${aId}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -68,7 +75,7 @@ async function getAdventurer(advId) {
     })
     .then(function (data) {
       console.log(data);
-      adventurer = data[advId];
+      adventurer = data;
     })
     .then(function () {
       gameMechanics(adventurer, quest);
