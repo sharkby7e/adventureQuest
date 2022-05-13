@@ -232,7 +232,6 @@ function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, mon
     }
   }, interval);
 
-  $('#outcome').text(outcome);
         if ($('#back-to-questboard')) {
           $('#back-to-questboard').empty();
           $('#back-to-questboard').append('<button>').attr({ id: 'results' });
