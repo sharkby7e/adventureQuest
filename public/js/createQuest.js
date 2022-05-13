@@ -67,7 +67,79 @@ function createNarratives(arr) {
 }
 
 
-function chosenNarrative() {
+
+
+async function createQuest() {
+  const response = await fetch('/api/quests', {
+    method: 'POST',
+    body: JSON.stringify({ difficulty, monster, description, monsterStr, monsterDex, monsterInt, monsterHitPoints }),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  if (response.ok) {
+    document.location.replace('/questboard');
+  } else {
+    alert('Failed to send');
+  }
+}
+
+
+// EVENT LISTENERS
+// --------------------------------------------------------------------------------------------------------------------------
+$("#monster").on("change", async () => {
+  monsterSelected = $("#monster option:selected").text();
+  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
+  monster = await fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    monsterData = data;
+    monster = monsterSelected;
+    monsterStr = data.strength;
+    monsterDex = data.dexterity;
+    monsterInt = data.intelligence;
+    monsterHitPoints = data.hit_points;
+
+  }).then(function () {
+
+    var narratives = [
+      `Defeat the ${monsterSelected} that has been ravaging the city`,
+      `Beat this ${monsterSelected} for looking at me funny.`,
+      `This ${monsterSelected} had been a menace to society and needs to be eliminated before he destroys everything`,
+      `This is your only chance to defeat this ${monsterSelected} before he snaps his fingers and makes half of us disappear`,
+      `Defeat this ${monsterSelected} for kicking my dog. They will feel the wrath of mine pain`,
+      `${monsterSelected} is getting away with my lucky charms hurry and stop the ${monsterSelected} before they finish them`,
+    ];
+
+    createNarratives(narratives);
+
+
+    if (monsterHitPoints < 40) {
+      $('#difficulty').html('DIFFICULTY: PEASANT');
+    }
+    else if (monsterHitPoints < 80) {
+      $('#difficulty').html('DIFFICULTY: BRAWLER');
+    }
+    else if (monsterHitPoints < 120) {
+      $('#difficulty').html('DIFFICULTY: SOLDIER');
+    }
+    else if (monsterHitPoints < 160) {
+      $('#difficulty').html('DIFFICULTY: HERO');
+    }
+    else if (monsterHitPoints >= 160) {
+      $('#difficulty').html('DIFFICULTY: LEGENDARY');
+    }
+
+
+
+  });
+
+});
+
+$('#create').on('click', async () => {
+
+
   let checkBoxArray = document.querySelectorAll('input[name=quest]');
   let descriptionArray = document.querySelectorAll('label[for=flexCheckDefault]');
   let checkedBoxesArray = [];
@@ -82,126 +154,34 @@ function chosenNarrative() {
   } else {
     checkedBox = checkedBoxesArray[0];
   }
-  return chosenNarrative = descriptionArray[checkedBox].innerHTML;
-}
+  description = descriptionArray[checkedBox].innerHTML;
 
-
-async function createQuest() {
-    const response = await fetch('/api/quests', {
-      method: 'POST',
-      body: JSON.stringify({ difficulty, monster, description, monsterStr, monsterDex, monsterInt, monsterHitPoints }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    if (response.ok) {
-      document.location.replace('/questboard');
-    } else {
-      alert('Failed to send');
-    }
-  }
-
-
-
-// EVENT LISTENERS
-// --------------------------------------------------------------------------------------------------------------------------
-$("#monster").on("change", () => {
-  monsterSelected = $("#monster option:selected").text();
-  var narratives = [
-    `Defeat the ${monsterSelected} that has been ravaging the city`,
-    `Beat this ${monsterSelected} for looking at me funny.`,
-    `This ${monsterSelected} had been a menace to society and needs to be eliminated before he destroys everything`,
-    `This is your only chance to defeat this ${monsterSelected} before he snaps his fingers and makes half of us disappear`,
-    `Defeat this ${monsterSelected} for kicking my dog. They will feel the wrath of mine pain`,
-    `${monsterSelected} is getting away with my lucky charms hurry and stop the ${monsterSelected} before they finish them`,
-  ];
-  createNarratives(narratives);
-
-  // document.getElementById('id-star-1')
-
-});
-
-// $("#difficulty").on("click", (e) => {
-//   switch ($(e.target).attr("id")) {
-//     case "star-1":
-//       difficulty = 0; //direct reduction of probability by percentage
-//       break;
-//     case "star-2":
-//       difficulty = -0.2; //direct reduction of probability by percentage
-//       break;
-//     case "star-3":
-//       difficulty = -0.3; //direct reduction of probability by percentage
-//       break;
-//     case "star-4":
-//       difficulty = -0.4; //direct reduction of probability by percentage
-//       break;
-//     case "star-5":
-//       difficulty = -0.5; //direct reduction of probability by percentage
-//       break;
-
-//     default:
-//       difficulty = 1;
-//   }
-// });
-
-$('#create').on('click', async () => {
-  chosenMonster = monsterSelected.replace(/ /g, "-").toLowerCase();
-  monster = await fetch(`https://www.dnd5eapi.co/api/monsters/${chosenMonster}`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    // console.log(data);
- });
-    description = chosenNarrative();
-    monster = monsterSelected;
-    monsterStr = monster.strength;
-    monsterDex = monster.dexterity;
-    monsterInt = monster.intelligence;
-    monsterHitPoints = monster.hit_points;
 
 
   switch (monsterHitPoints) {
     case (monsterHitPoints < 40):
       difficulty = 0; //direct reduction of probability by percentage
-      document.getElementById('id-star-1').dispatchEvent(clickEvent);
       break;
     case (monsterHitPoints < 80):
       difficulty = -0.2; //direct reduction of probability by percentage
-      document.getElementById('id-star-2').dispatchEvent(clickEvent);
       break;
     case (monsterHitPoints < 120):
       difficulty = -0.3; //direct reduction of probability by percentage
-      document.getElementById('id-star-3').dispatchEvent(clickEvent);
       break;
     case (monsterHitPoints < 160):
       difficulty = -0.4; //direct reduction of probability by percentage
-      document.getElementById('id-star-4').dispatchEvent(clickEvent);
       break;
     case (monsterHitPoints >= 160):
       difficulty = -0.5; //direct reduction of probability by percentage
-      document.getElementById('id-star-5').dispatchEvent(clickEvent);
       break;
-
-    default:
-      difficulty = 0;
   }
 
+
+
+
+
   createQuest()
-    // let windowVariable = (function () {
-    //   let Menu = {};
-    //   return {
-    //     difficulty: difficulty,
-    //     monster_str: data.strength,
-    //     monsterDexerity: data.dexterity,
-    //     monsterIntelligence: data.intelligence,
-    //     monsterHitPoints: data.hit_points,
-    //     checkedBoxesArray: data.hit_points
-    //   }
-    // })();
- 
-})
-
-
+});
 
 // FUNCTIONS TO BE INIATED UPON PAGE LOADING
 // --------------------------------------------------------------------------------------------------------------------------
@@ -210,10 +190,4 @@ monsterMash();
 
 
 
-
-
-
-
-//https://hashnode.com/post/module-not-defined-as-an-error-in-javascript-cjf5sq8tm00zpy5s213knebuc
-// module.exports = { difficulty, monster_str, monsterDexerity, monsterIntelligence, monsterHitPoints, checkedBoxesArray };
 
