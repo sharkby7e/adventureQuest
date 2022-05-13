@@ -29,12 +29,13 @@ router.get("/signUp", async (req, res) => {
 router.get("/questBoard", auth, async (req, res) => {
   try {
     const questData = await Quest.findAll({
-      order: [["created_at", "DESC"]],
+      // order: [["created_at", "DESC"]],
     });
 
     const adventurerData = await Adventurer.findAll({
       include: [{ model: Class }],
-      order: [["created_at", "DESC"]],
+      // order: [["created_at", "DESC"]],
+      // where: { questMasterId: req.session.questMasterId },
     });
 
     //serializedata
