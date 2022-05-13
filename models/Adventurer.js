@@ -14,6 +14,7 @@ Adventurer.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "King",
     },
     name: {
       type: DataTypes.STRING,
@@ -22,17 +23,17 @@ Adventurer.init(
     strength: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 10,
+      defaultValue: 15,
     },
     dexterity: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 10,
+      defaultValue: 15,
     },
     intelligence: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 10,
+      defaultValue: 15,
     },
     statPoints: {
       type: DataTypes.INTEGER,
