@@ -11,25 +11,26 @@ var adventurerPower;
 var monsterHPStr = '';
 var outcome;
 var battleString = '';
-var adventurerId = 0;
-var questId = 0;
+var questId;
+var adventurerId;
 var adventurer = [];
 var quest = [];
-const adventurers = $("#adventurers");
-const quests = $("#quests");
+
+const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+console.log(adventureQuestIndex)
+// TESTING
+//=================================================================================================
+// const adventureQuestIndex = 1;
+// var questIndex = 0;
+// var adventurerIndex = 0;
+//=================================================================================================
+
+
+
 // DECLARE UTILITY FUNCTIONS
 // ------------------------------------------------------------------------------------------
-
-
-function displayPointsLeft() {
-  var pointsLeft = 15 - strChoice + dexChoice + intChoice;
-  $("#stat-points").text(pointsLeft);
-  window.setTimeout("displayPointsLeft()", 10);
-}
-
-
-async function getQuest() {
-  await fetch(`/api/quests/`, {
+async function getAQIndex() {
+  await fetch(`/api/adventurequest/${adventureQuestIndex}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -38,13 +39,17 @@ async function getQuest() {
     })
     .then(function (data) {
       console.log(data);
-      quest = data.allQuests[0];
+      let questId = data.questId;
+      console.log(questId);
+      let adventurerId = data.adventurerId;
+      console.log(adventurerId);
+      getQuest(questId, adventurerId);
     })
-    .then(getAdventurer());
 }
 
-async function getAdventurer() {
-  await fetch(`/api/adventurer`, {
+async function getQuest(iQ, iA) {
+  console.log(iQ)
+  await fetch(`/api/quests/${iQ}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -53,7 +58,24 @@ async function getAdventurer() {
     })
     .then(function (data) {
       console.log(data);
-      adventurer = data[0];
+      let quest = data;
+      let adventurerId = iA;
+      getAdventurer(adventurerId, quest);
+    })
+}
+
+async function getAdventurer(aId, qData) {
+  quest = qData;
+  await fetch(`/api/adventurer/${aId}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      adventurer = data;
     })
     .then(function () {
       gameMechanics(adventurer, quest);
@@ -62,9 +84,9 @@ async function getAdventurer() {
 
 function gameMechanics(adventurer, quest) {
   var strWinPercentage =
-  (adventurer.strength * adventurer.class.strMultiplier) / 50 + quest.difficulty + (0 - quest.monsterStr / 100);
+    (adventurer.strength * adventurer.class.strMultiplier) / 50 + quest.difficulty + (0 - quest.monsterStr / 100);
   var dexWinPercentage =
-  (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +
+    (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +
     quest.difficulty +
     (0 - quest.monsterDex / 100);
   var intWinPercentage =
@@ -92,7 +114,7 @@ function gameMechanics(adventurer, quest) {
     `I'm in need of some good practice!... and you're in need of a lesson! - You've landed a blow!`,
     `I shall bathe in your blood as I rain hellfire down upon your damned soul!!! - You've landed a blow!`
   ]
-  
+
 
   console.log("adv hit points = " + adventurerHitPoints);
   console.log("monster hitpoints " + monsterHitPoints);
@@ -129,68 +151,96 @@ function gameMechanics(adventurer, quest) {
         i = i + 1;
       }
     }
-    console.log('test');
   }
-  
+
   if (monsterHitPoints < 1) {
     win = true;
   } else {
     win = false;
   }
 
-  console.log("str win %: " + strWinPercentage);
-  console.log("dex win %: " + dexWinPercentage);
-  console.log("int win %: " + intWinPercentage);
-  console.log("fightArray: " + fightArray);
+  battleArr = battleString.split('|');
+  adventurerHPArr = adventurerHPStr.split('|');
+  monsterHPArr = monsterHPStr.split('|');
+  damageArr = damageString.split('|');
+  injuryArr = injuryString.split('|');
 
-  console.log("adv hit points = " + adventurerHPStr);
-  console.log("monster hitpoints " + monsterHPStr);
-  console.log("damage dealt = " + damageString);
-  console.log("injuries sustained in battle = " + injuryString);
-  console.log("The battle itself: " + battleString);
-  console.log("win: " + win);
-  
-  sendBattle(win, battleString, injuryString, damageString, monsterHPStr, adventurerHPStr);
-}
+  battleArr.push(' ');
+  adventurerHPArr.push(' ');
+  monsterHPArr.push(' ');
+  damageArr.push(' ');
+  injuryArr.push(' ');
+  console.log(battleString);
+  console.log(battleArr);
+  if (win) { outcome = 'VICTORY!!!' } else { outcome = "Death comes to us all..." }
 
-function adventChoiceHandler(e) {
-  e.preventDefault();
-  console.log("click");
-  adventurerId = e.target.getAttribute("data-id");
-  console.log(adventurerId);
-}
-function questChoiceHandler(e) {
-  e.preventDefault();
-  console.log("click");
-  questId = e.target.getAttribute("data-id");
-  console.log(questId);
+
+  showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
 }
 
 
-async function sendBattle( win, battle, injuries, damage, monsterHP, adventurerHP ) {
-  console.log('put initiated')
-  const response = await fetch(`/api/adventurequest/1`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      win,
-      battle,
-      injuries,
-      damage,
-      monsterHP,
-      adventurerHP,
-    }),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+function showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
+  let videoDurationInSecs = 44;
+  let interval = Math.floor((videoDurationInSecs * 1000) / battleArr.length);
+  let i = 0;
+  initiateGamePlay(i, interval, videoDurationInSecs, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
+}
+
+
+function initiateGamePlay(i, interval, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
+  battle = setInterval(function () {
+    Duration--;
+    console.log('round ' + i)
+    if (Duration === 0) {
+      clearInterval(battle);
+      console.log("Out of time...");
+    } else {
+
+      if (i === battleArr.length - 2) {
+        $('#battle').text('');
+        $('#adventurerHP').text('');
+        $('#monsterHP').text('');
+        $('#damage').text('');
+        $('#injuries').text('');
+        $('#outcome').text(outcome);
+        $('#back-to-questboard').append('<button>').attr({ id: 'results' })
+        return;
+      } else {
+        $('#battle').text(battleArr[i]);
+        $('#adventurerHP').text(adventurerHPArr[i]);
+        $('#monsterHP').text(monsterHPArr[i]);
+        $('#damage').text(damageArr[i]);
+        $('#injuries').text(injuryArr[i]);
+        $('#outcome').text('');
+        i = i + 1;
+      }
     }
-    })
+console.log(interval);
+  }, interval);
 }
+
+
+
+
+// 
+
+
+
+
+
+
+
+
 
 
 
 
 // EVENT LISTENERS
 // ------------------------------------------------------------------------------------------
+$("#results").on("click", (e) => {
+  e.preventDefault();
+  window.location.href = '/results';
+});
 
 
 
@@ -199,17 +249,19 @@ async function sendBattle( win, battle, injuries, damage, monsterHP, adventurerH
 
 
 
-
-getQuest();
-
-
-// $("#").on("click", () => {
- 
+// INITIATE ON PAGE LOAD
+// ------------------------------------------------------------------------------------------
+getAQIndex();
 
 
-// });
 
 
+
+  // function initiateGamePlay() {
+  //   var pointsLeft = 15 - strChoice + dexChoice + intChoice;
+  //   $("#stat-points").text(pointsLeft);
+  //   window.setTimeout("initiateGamePlay()", 10);
+  // }
 
 
 
