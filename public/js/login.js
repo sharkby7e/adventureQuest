@@ -1,4 +1,4 @@
-console.log("script is linked");
+console.log("script is lalalalinked");
 const login = $("#submit");
 
 login.on("click", async (e) => {
