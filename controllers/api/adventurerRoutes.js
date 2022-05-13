@@ -7,19 +7,14 @@ router.post("/", async (req, res) => {
       ...req.body,
       questMasterId: req.session.questMasterId,
     });
-    res
-      .status(200)
-      .json({
-        user: user,
-        message: `New Adventurer ${req.body.name} created!`,
-      });
+    res.status(200).json({
+      user: user,
+      message: `New Adventurer ${req.body.name} created!`,
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
-
-//updates adventurer experience)
-// router.put();
 
 router.get("/", async (req, res) => {
   try {
@@ -46,14 +41,5 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
-router.post("/random", (req, res) => {
-  res.json(req.body);
-})
-
-
-
-
 
 module.exports = router;

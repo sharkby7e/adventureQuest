@@ -29,16 +29,12 @@ router.get("/signUp", async (req, res) => {
 router.get("/questBoard", auth, async (req, res) => {
   try {
     const questData = await Quest.findAll({
-      include: [
-        {
-          model: Questmaster,
-          attributes: ["questMasterName"],
-        },
-      ],
+      order: [["created_at", "DESC"]],
     });
 
     const adventurerData = await Adventurer.findAll({
       include: [{ model: Class }],
+      order: [["created_at", "DESC"]],
     });
 
     //serializedata
@@ -47,9 +43,6 @@ router.get("/questBoard", auth, async (req, res) => {
       adventure.get({ plain: true })
     );
 
-    //testing assumptions
-    console.log(quests);
-    console.log(adventurers);
     res.render("questBoard", {
       quests,
       adventurers,

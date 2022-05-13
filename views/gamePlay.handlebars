@@ -12,30 +12,30 @@
 
   <div class="grid grid-cols-2 gap-4">
 
-    <div class="grid grid-cols-1 gap-4 justify-center">
+    <div class="m-40 grid grid-cols-1 gap-4 justify-center">
       <div>
         <br>
-        <p class="text-left text-4xl text-accent-focus" id="adventurerName"></p>
-        <p class="text-left text-3xl text-info" id="adventurerHitPoints"></p>
-        <p class="text-left text-3xl text-info" id="adventurerStrength"></p>
-        <p class="text-left text-3xl text-info" id="adventurerDexterity"></p>
-        <p class="text-left text-3xl text-info" id="adventurerIntelligence"></p>
-        <p class="text-left text-3xl text-info" id="adventurerHP"></p><br>
+        <p class="my-15 text-left text-4xl text-accent-focus" id="adventurerName"></p><br><br>
+        <p class="text-left text-xxl text-info" id="adventurerHitPoints"></p>
+        <p class="text-left text-xxl text-info" id="adventurerStrength"></p>
+        <p class="text-left text-xxl text-info" id="adventurerDexterity"></p>
+        <p class="text-left text-xxl text-info" id="adventurerIntelligence"></p>
+        <p class="text-left text-xxl text-info" id="adventurerHP"></p><br>
         <p class="text-center text-2xl text-warning" id="adventurerSwing"></p>
         <p class="text-center text-4xl text-accent-focus" id="adventurerSpeak"></p>
         <p class="text-right text-5xl text-error" id="injuries"></p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 justify-center">
+    <div class="m-40 grid grid-cols-1 gap-4 justify-center">
       <div>
         <br>
-        <p class="text-right text-4xl text-accent-focus" id="monsterName"></p>
-        <p class="text-right text-3xl text-info" id="monsterHitPoints"></p>
-        <p class="text-right text-3xl text-info" id="monsterStr"></p>
-        <p class="text-right text-3xl text-info" id="monsterDex"></p>
-        <p class="text-right text-3xl text-info" id="monsterInt"></p>
-        <p class="text-right text-3xl text-info" id="monsterHP"></p><br>
+        <p class="my-15 text-right text-4xl text-accent-focus" id="monsterName"></p><br><br>
+        <p class="text-right text-xxl text-info" id="monsterHitPoints"></p>
+        <p class="text-right text-xxl text-info" id="monsterStr"></p>
+        <p class="text-right text-xxl text-info" id="monsterDex"></p>
+        <p class="text-right text-xxl text-info" id="monsterInt"></p>
+        <p class="text-right text-xxl text-info" id="monsterHP"></p><br>
         <p class="text-center text-2xl text-warning" id="monsterSwing"></p>
         <p class="text-center text-4xl text-accent-focus" id="monsterSpeak"></p>
         <p class="text-left text-5xl text-error" id="damage"></p>
@@ -43,15 +43,25 @@
     </div>
   </div>
 
-  <section class="hero min-h-screen">
+  {{!-- <section class="hero">
     <div class="hero-content text-center">
-      <div class="text-3xl">
-        <p class="text-accent-focus" id="battle"></p>
-        <p id="outcome" class="text-5xl text-warning"></p>
+      <div class="text-2xl">
+        <p class="text-accent-focus mb-5" id="battle"></p>
+        <p id="outcome" class="text-xxl text-warning mb-5"></p>
       </div>
     </div>
     </div>
-  </section>
+  </section> --}}
+
+
+<div class="hero min-h-screen">
+  <div class="hero-content text-center text-neutral-content">
+    <div class="max-w-md">
+        <p class="text-accent-focus text-3xl mb-5" id="battle"></p>
+        <p id="outcome" class="text-5xl text-warning mb-5"></p>
+    </div>
+  </div>
+</div>
 
 
   <script src="../js/gamePlay.js"></script>
