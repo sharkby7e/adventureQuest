@@ -11,23 +11,24 @@ var adventurerPower;
 var monsterHPStr = '';
 var outcome;
 var battleString = '';
-var adventurerId = 0;
-var questId = 0;
 var adventurer = [];
 var quest = [];
 
-const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+// const adventureQuestIndex = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+
+// TESTING
+//=================================================================================================
+const adventureQuestIndex = 1;
+var questIndex = 0;
+var adventurerIndex = 0;
+//=================================================================================================
 
 
 
 // DECLARE UTILITY FUNCTIONS
 // ------------------------------------------------------------------------------------------
-
-
-
-
 async function getAQIndex() {
-  await fetch(`/api/quests/${adventureQuestIndex}`, {
+  await fetch(`/api/adventurequest/${adventureQuestIndex}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -36,8 +37,8 @@ async function getAQIndex() {
     })
     .then(function (data) {
       console.log(data);
-      questIndex = data.questId;
-      adventurerIndex = data.adventurerId;
+      // questIndex = data.questId; ================================== TESTING
+      // adventurerIndex = data.adventurerId; ================================== TESTING
     })
     .then(getQuest(questIndex, adventurerIndex));
 }
@@ -169,13 +170,14 @@ function gameMechanics(adventurer, quest) {
   monsterHPArr = monsterHPStr.split('|');
   damageArr = damageString.split('|');
   injuryArr = injuryString.split('|');
-  
+
   battleArr.push(' ');
   adventurerHPArr.push(' ');
   monsterHPArr.push(' ');
   damageArr.push(' ');
   injuryArr.push(' ');
-
+  console.log(battleString);
+  console.log(battleArr);
   if (win) { outcome = 'VICTORY!!!' } else { outcome = "Death comes to us all..." }
 
 
@@ -184,32 +186,54 @@ function gameMechanics(adventurer, quest) {
 
 
 function showBattle(battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
-  videoDurationInSecs = 44;
-  initiateGamePlay(videoDurationInSecs, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
+  let videoDurationInSecs = 44;
+  console.log((videoDurationInSecs * 1000) / battleArr.length)
+  let i = 0;
+  initiateGamePlay(videoDurationInSecs, videoDurationInSecs, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome);
 }
 
 
-function initiateGamePlay(Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
-  if (i === battleArr.length) {
-    $('#battle').text('');
-    $('#adventurerHP').text('');
-    $('#monsterHP').text('');
-    $('#damage').text('');
-    $('#injuries').text('');
-    $('#outcome').text(outcome);
-    $('#back-to-questboard').append('<button>').attr({ id: 'results' })
-    return;
-  } else {
-    $('#battle').text(battleArr[i]);
-    $('#adventurerHP').text(adventurerHPArr[i]);
-    $('#monsterHP').text(monsterHPArr[i]);
-    $('#damage').text(damageArr[i]);
-    $('#injuries').text(injuryArr[i]);
-    $('#outcome').text('');
-    i = i + 1;
-    window.setTimeout("initiateGamePlay()", ((Duration * 1000) / battleArr.length));
-  }
+function initiateGamePlay(i, Duration, battleArr, adventurerHPArr, monsterHPArr, damageArr, injuryArr, outcome) {
+  timerInterval = setInterval(function () {
+    Duration--;
+
+    if (Duration === 0) {
+      clearInterval(timerInterval);
+      console.log("Out of time...");
+    } else {
+
+      if (i === battleArr.length - 2) {
+        $('#battle').text('');
+        $('#adventurerHP').text('');
+        $('#monsterHP').text('');
+        $('#damage').text('');
+        $('#injuries').text('');
+        $('#outcome').text(outcome);
+        $('#back-to-questboard').append('<button>').attr({ id: 'results' })
+        return;
+      } else {
+        $('#battle').text(battleArr[i]);
+        $('#adventurerHP').text(adventurerHPArr[i]);
+        $('#monsterHP').text(monsterHPArr[i]);
+        $('#damage').text(damageArr[i]);
+        $('#injuries').text(injuryArr[i]);
+        $('#outcome').text('');
+        i = i + 1;
+      }
+    }
+
+  }, 1000);
 }
+
+
+
+
+// 
+
+
+
+
+
 
 
 
