@@ -3,21 +3,18 @@ const { Quest } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const allQuests = await Quest.findAll({});
-    // where: { questMasterId: req.session.questMasterId },
+    const allQuests = await Quest.findAll({
+      where: { questMasterId: req.session.questMasterId },
+    });
     res.status(200).json({ allQuests });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-
-
 router.get("/:id", async (req, res) => {
   try {
-    const getQuest = await Quest.findByPk(req.params.id, {
-     
-    });
+    const getQuest = await Quest.findByPk(req.params.id, {});
     if (!getQuest) {
       res.status(404).json({ message: "No quest found with that id!" });
       return;
@@ -27,7 +24,6 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 router.post("/", async (req, res) => {
   try {
