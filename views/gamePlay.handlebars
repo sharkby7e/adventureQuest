@@ -1,46 +1,64 @@
 <!-- <!DOCTYPE html> -->
 
 <link rel="shortcut icon" href="#">
-    {{!-- <link rel="icon" type="image/x-icon" href="../../img/favicon.ico" /> --}}
-{{! <iframe src='https://gfycat.com/ifr/FemaleThatInvisiblerail' frameborder='0' scrolling='no' width='100%' height='100%'></iframe> }}
+{{!--
+<link rel="icon" type="image/x-icon" href="../../img/favicon.ico" /> --}}
+{{! <iframe src='https://gfycat.com/ifr/FemaleThatInvisiblerail' frameborder='0' scrolling='no' width='100%'
+  height='100%'></iframe> }}
 {{! <img src="../public/assets/questPlay.gif" class="bg-cover"> }}
 
-<section
-  class="w-full bg-cover h-screen min-h-screen"
-  style="background-image: url(https://thumbs.gfycat.com/FemaleThatInvisiblerail-size_restricted.gif);"
->
-<div class="grid grid-cols-3 gap-4">
+<section class="w-full bg-cover h-screen min-h-screen"
+  style="background-image: url(https://thumbs.gfycat.com/FemaleThatInvisiblerail-size_restricted.gif);">
+  <div class="grid grid-cols-2 gap-4">
 
-  <div class="grid grid-cols-3 gap-4 place-content-evenly">
-    <div class=" text-5xl">
-      <p id="adventurerHP">adventureHP</p>
-       <p id="injuries">injuries</p>
+    <div class="grid grid-cols-1 gap-4 justify-center">
+      <div>
+        <br>
+        <p class="text-left text-6xl text-base-300" id="adventurerName"></p>
+        <p class="text-left text-3xl text-info" id="adventurerHitPoints"></p>
+        <p class="text-left text-3xl text-info" id="adventurerStrength"></p>
+        <p class="text-left text-3xl text-info" id="adventurerDexterity"></p>
+        <p class="text-left text-3xl text-info" id="adventurerIntelligence"></p>
+        <p class="text-left text-3xl text-info" id="adventurerHP"></p><br>
+        <p class="text-center text-2xl text-warning" id="adventurerSwing"></p>
+        <p class="text-center text-4xl text-base-300" id="adventurerSpeak"></p>
+        <p class="text-right text-7xl text-error" id="injuries"></p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 justify-center">
+      <div>
+        <br>
+        <p class="text-right text-6xl text-base-300" id="monsterName"></p>
+        <p class="text-right text-3xl text-info" id="monsterHitPoints"></p>
+        <p class="text-right text-3xl text-info" id="monsterStr"></p>
+        <p class="text-right text-3xl text-info" id="monsterDex"></p>
+        <p class="text-right text-3xl text-info" id="monsterInt"></p>
+        <p class="text-right text-3xl text-info" id="monsterHP"></p><br>
+        <p class="text-center text-2xl text-warning" id="monsterSwing"></p>
+        <p class="text-center text-4xl text-base-300" id="monsterSpeak"></p>
+        <p class="text-left text-7xl text-error" id="damage"></p>
+      </div>
     </div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 place-content-evenly">
-    <div class="text-5xl">
-      <p id="monsterHP">monsterHP</p>
-      <p id="damage">damage</p>
+  <section class="hero min-h-screen">
+    <div class="hero-content text-center">
+      <div class="text-5xl">
+        <p class="text-base-300" id="battle"></p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<section class="hero min-h-screen">
-  <div class="hero-content text-center">
-    <div class="text-5xl">
-      <p id="outcome">win</p>
     </div>
-  </div>
-</div>
+  </section>
+
+  <section class="hero min-h-screen">
+    <div class="hero-content text-center">
+      <div id="results-container" class="text-5xl">
+        <p id="outcome" class="text-5xl text-warning"></p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <script src="../js/gamePlay.js"></script>
 </section>
-
-<script src="../js/gamePlay.js"></script>
-</section>
-{{!-- $('#battle').text(battleArr[i]);
-  $('#adventurerHP').text(adventurerHPArr[i]);
-  $('#monsterHP').text(monsterHPArr[i]);
-  $('#damage').text(damageArr[i]);
-  $('#injuries').text(injuryArr[i]);
-  $('#outcome').text(win); --}}
