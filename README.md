@@ -23,8 +23,8 @@ Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Advent
 
 - [Technologies Employed](#technologies-employed)
 - [Key Functions](#key-functions)
-* [Final Product](#final-product)
-* [Video](#video)
+- [Final Product](#final-product)
+- [Video](#video)
 - [License](#license)
 - [Contact/Questions](#questions)
 - [Summary](#summary-and-learning-points)
