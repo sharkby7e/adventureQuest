@@ -235,7 +235,9 @@ SOFTWARE.
 Please visit our gitHubs
 
 [Sid (sharkby7e)](https://www.github.com/sharkby7e)
+
 [Krystopher (KrystopherQ)](https://github.com/KrystopherQ)
+
 [Brennan (blec333)](https://github.com/Blec333)
 
 
