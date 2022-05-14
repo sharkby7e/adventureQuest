@@ -69,6 +69,11 @@ adventureQuest.on("click", async () => {
 });
 ```
 
+### game mechanics
+
+This was the big brains of our UX. Once the Questmaster had chosen a quest and adventurer, they were shown gameplay, all of which
+was calculated using these functions. This file was in charge of calculating a win or a loss, as well as displaying hits landed by the 
+Adventurer, and the Monster.
 
 ```md
 function gameMechanics(adventurer, quest) {
@@ -190,18 +195,6 @@ router.get("/questBoard", auth, async (req, res) => {
 
 
 
-Github Repository:
-https://github.com/mvc-tech-blog
-
-Deployed Site:
-https://blec-mvc-tech-blog.herokuapp.com/
-
-
-## Video
-
-[![Video](./public/img/AdventureQuest.gif)](https://drive.google.com/file/d/1eAQzv3El5tqmMA13G9F4C1BFIfVinKjQ/view?usp=sharing "Video")
-
-
 ## License
 
 This software is licensed under the MIT [LICENSE](./LICENSE)
@@ -243,7 +236,7 @@ Please visit our gitHubs
 
 ## Summary and Learning Points
 
-###Sid
+### Sid
 This was an extremely fun application to build. Not only because of my team, but because we got to be creative. We had to find
 solutions to "problems" that we "created" ourselves, and I really enjoyed the process. I enjoyed working in a group, and definitely
 learned a lot about how I personally deal with teamwork.
