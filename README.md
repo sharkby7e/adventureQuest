@@ -24,7 +24,6 @@ Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Advent
 - [Technologies Employed](#technologies-employed)
 - [Key Functions](#key-functions)
 - [Final Product](#final-product)
-- [Video](#video)
 - [License](#license)
 - [Contact/Questions](#questions)
 - [Summary](#summary-and-learning-points)
@@ -69,51 +68,28 @@ adventureQuest.on("click", async () => {
 });
 ```
 
-### game mechanics
+### Game Mechanics - The Brain
 
-This was the big brains of our UX. Once the Questmaster had chosen a quest and adventurer, they were shown gameplay, all of which
-was calculated using these functions. This file was in charge of calculating a win or a loss, as well as displaying hits landed by the 
-Adventurer, and the Monster.
+Once the Questmaster choses a quest and adventurer, the stats of the quest monster are calculated against the adventurer stats to determine one winner per battle.
+
+We are comparing str to str, dex to dex, and int to int.  This way either monster or adventurer have a legitimate advantage based on a particular strength or weakness.
+
+We boil this comparison down to a fraction of 1 (or percentage), then apply class advantage, difficulty rating of the monster itself, and the monsters respective attribute.
 
 ```md
 function gameMechanics(adventurer, quest) {
-  var strWinPercentage =
-    (adventurer.strength * adventurer.class.strMultiplier) / 50 + quest.difficulty + (0 - quest.monsterStr / 100);
-  var dexWinPercentage =
-    (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +
-    quest.difficulty +
-    (0 - quest.monsterDex / 100);
-  var intWinPercentage =
-    (adventurer.intelligence * adventurer.class.intMultiplier) / 100 +
-    quest.difficulty +
-    (0 - quest.monsterInt / 100);
+  var strWinPercentage = (adventurer.strength * adventurer.class.strMultiplier) / 100 + quest.difficulty + (0 - quest.monsterStr / 100);
+  var dexWinPercentage = (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +  quest.difficulty + (0 - quest.monsterDex / 100);
+  var intWinPercentage = (adventurer.intelligence * adventurer.class.intMultiplier) / 100 + quest.difficulty + (0 - quest.monsterInt / 100);
+```
 
+Once we have our fraction per stat, enter math random.
 
-  fightArray = [strWinPercentage, dexWinPercentage, intWinPercentage];
-  adventurerHitPointsPersistant = adventurer.strength + adventurer.dexterity + adventurer.intelligence - 30;
-  adventurerHitPoints = adventurer.strength + adventurer.dexterity + adventurer.intelligence - 30;
-  adventurerPower = (((strWinPercentage + dexWinPercentage + intWinPercentage) / 3) / 1);
-  monsterHitPoints = quest.monsterHitPoints;
+Math random chooses a number between 0 and 1 and our fraction acts as the over/under for our conditional statement.
 
-  var tookDamageArr = [
-    `Gahhhhh! Lucky blow... That won't happen again! - You've taken damage!`,
-    `That one was free... I need to make to even the odds for a challenge! - You've taken damage!`,
-    `You're not getting away with that! Come here!!! - You've taken damage!`,
-    `You think that hurt?! Think again, I'm just getting started! - You've taken damage!`,
-    `If I wanted a kiss I'd have called your mother! - You've taken damage!`
-  ]
-  var dealtDamageArr = [
-    `Die you foul beast! You don't stand a chance! - You've landed a blow!`,
-    `Not today! I will purify this land of your filth! - You've landed a blow!`,
-    `Go on... Try again and witness the pain I wrought upon your flesh! - You've landed a blow!`,
-    `I'm in need of some good practice!... and you're in need of a lesson! - You've landed a blow!`,
-    `I shall bathe in your blood as I rain hellfire down upon your damned soul!!! - You've landed a blow!`
-  ]
+So now we need to way to determine which stat we will use; enter math random again!  We use it to pick a number from 1 to 3 with each number representing a stat.  This all fits snuggly within a while loop that runs so long as both parties are alive.  Once someone dies, we have a winner and the loop exits.
 
-
-  damage = 0;
-  injury = 0;
-  let i = 0;
+```md
 
   while (monsterHitPoints > 0 && adventurerHitPoints > 0) {
     if (Math.random() < fightArray[i] + adventurerPower) {
@@ -143,12 +119,6 @@ function gameMechanics(adventurer, quest) {
         i = i + 1;
       }
     }
-  }
-
-  if (monsterHitPoints < 1) {
-    win = true;
-  } else {
-    win = false;
   }
 ```
 
@@ -237,10 +207,10 @@ Please visit our gitHubs
 ## Summary and Learning Points
 
 ### Sid
-This was an extremely fun application to build. Not only because of my team, but because we got to be creative. We had to find
-solutions to "problems" that we "created" ourselves, and I really enjoyed the process. I enjoyed working in a group, and definitely
-learned a lot about how I personally deal with teamwork.
+This was an extremely fun application to build. Not only because of my team, but because we got to be creative. We had to find solutions to "problems" that we "created" ourselves, and I really enjoyed the process. I enjoyed working in a group, and definitely learned a lot about how I personally deal with teamwork.
 
+### Brennan
+This project was wonderfully collaborative.  It's success can be attributed in no small measure to our ability to work together as a team.  I was lucky to be able to work with these two on this project.  We kept the atmosphere light and fun, which I maintain contributed to our productivity.
 
 ### Acknowledgements
 
