@@ -185,8 +185,8 @@ router.get("/questBoard", auth, async (req, res) => {
 
 ## Final Product
 
-<img title="image" alt="Style Showcase Page Screenshot" src="./docs/landing-page.jpg">
-<img title="image" alt="Style Showcase Page Screenshot" src="./docs/AdventureQuest.gif">
+<img title="image" alt="Style Showcase Page Screenshot" src="./public/img/landing-page.jpg">
+<img title="image" alt="Style Showcase Page Screenshot" src="./public/img/AdventureQuest.gif">
 
 
 
@@ -199,7 +199,7 @@ https://blec-mvc-tech-blog.herokuapp.com/
 
 ## Video
 
-[![Video](./docs/AdventureQuest.gif)](https://drive.google.com/file/d/1eAQzv3El5tqmMA13G9F4C1BFIfVinKjQ/view?usp=sharing "Video")
+[![Video](./public/img/AdventureQuest.gif)](https://drive.google.com/file/d/1eAQzv3El5tqmMA13G9F4C1BFIfVinKjQ/view?usp=sharing "Video")
 
 
 ## License
