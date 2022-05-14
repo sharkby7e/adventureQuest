@@ -72,11 +72,11 @@ adventureQuest.on("click", async () => {
 
 Once the Questmaster choses a quest and adventurer, the stats of the quest monster are calculated against the adventurer stats to determine one winner per battle.
 
-We are comparing str to str, dex to dex, and int to int.  This way either monster or adventurer have a legitimate advantage based on a particular strength or weakness.
+We are comparing the Adventurer's stats to the Monsters.  This way either monster or adventurer have a legitimate advantage based on a particular strength or weakness.
 
 We boil this comparison down to a fraction of 1 (or percentage), then apply class advantage, difficulty rating of the monster itself, and the monsters respective attribute.
 
-```md
+```javascript
 function gameMechanics(adventurer, quest) {
   var strWinPercentage = (adventurer.strength * adventurer.class.strMultiplier) / 100 + quest.difficulty + (0 - quest.monsterStr / 100);
   var dexWinPercentage = (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +  quest.difficulty + (0 - quest.monsterDex / 100);
@@ -89,8 +89,7 @@ Math random chooses a number between 0 and 1 and our fraction acts as the over/u
 
 So now we need to way to determine which stat we will use; enter math random again!  We use it to pick a number from 1 to 3 with each number representing a stat.  This all fits snuggly within a while loop that runs so long as both parties are alive.  Once someone dies, we have a winner and the loop exits.
 
-```md
-
+```javascript
   while (monsterHitPoints > 0 && adventurerHitPoints > 0) {
     if (Math.random() < fightArray[i] + adventurerPower) {
       damage = Math.ceil(Math.floor((Math.random() * 3) + 1) + adventurerPower);
@@ -121,7 +120,6 @@ So now we need to way to determine which stat we will use; enter math random aga
     }
   }
 ```
-
 
 ### router.get("/questBoard")
 
