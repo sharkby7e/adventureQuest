@@ -210,6 +210,9 @@ This was an extremely fun application to build. Not only because of my team, but
 ### Brennan
 This project was wonderfully collaborative.  It's success can be attributed in no small measure to our ability to work together as a team.  I was lucky to be able to work with these two on this project.  We kept the atmosphere light and fun, which I maintain contributed to our productivity.
 
+### Krsytopher
+This project was amazing from our problem solving to our pair workflow. I really enjoyed working with my partners not only were they very knowledgeable but great at teaching and working with each other. Most motivated and hard working team I've been a part of.
+
 ### Acknowledgements
 
 ©Brennan LeClair
