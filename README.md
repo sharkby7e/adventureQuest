@@ -10,7 +10,7 @@ If so then this app is for you!
 
 Adventure Quest is a single player high fantasy data driven user experience.
 
-Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Adventurer, this is an app within which you can loose yourself to fantasy!
+Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Adventurer, this is an app within which you can lose yourself to fantasy!
 
 
 ## Link to Deployed Application
