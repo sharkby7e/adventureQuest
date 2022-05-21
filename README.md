@@ -10,7 +10,7 @@ If so then this app is for you!
 
 Adventure Quest is a single player high fantasy data driven user experience.
 
-Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Adventurer, this is an app within which you can loose yourself to fantasy!
+Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Adventurer, this is an app within which you can lose yourself to fantasy!
 
 
 ## Link to Deployed Application
@@ -72,11 +72,11 @@ adventureQuest.on("click", async () => {
 
 Once the Questmaster choses a quest and adventurer, the stats of the quest monster are calculated against the adventurer stats to determine one winner per battle.
 
-We are comparing str to str, dex to dex, and int to int.  This way either monster or adventurer have a legitimate advantage based on a particular strength or weakness.
+We are comparing the Adventurer's stats to the Monsters.  This way either monster or adventurer have a legitimate advantage based on a particular strength or weakness.
 
 We boil this comparison down to a fraction of 1 (or percentage), then apply class advantage, difficulty rating of the monster itself, and the monsters respective attribute.
 
-```md
+```javascript
 function gameMechanics(adventurer, quest) {
   var strWinPercentage = (adventurer.strength * adventurer.class.strMultiplier) / 100 + quest.difficulty + (0 - quest.monsterStr / 100);
   var dexWinPercentage = (adventurer.dexterity * adventurer.class.dexMultiplier) / 100 +  quest.difficulty + (0 - quest.monsterDex / 100);
@@ -120,7 +120,6 @@ So now we need to way to determine which stat we will use; enter math random aga
     }
   }
 ```
-
 
 ### router.get("/questBoard")
 
@@ -210,6 +209,9 @@ This was an extremely fun application to build. Not only because of my team, but
 
 ### Brennan
 This project was wonderfully collaborative.  It's success can be attributed in no small measure to our ability to work together as a team.  I was lucky to be able to work with these two on this project.  We kept the atmosphere light and fun, which I maintain contributed to our productivity.
+
+### Krystopher
+This project was amazing from our problem solving to our pair workflow. I really enjoyed working with my partners not only were they very knowledgeable but great at teaching and working with each other. Most motivated and hard working team I've been a part of.
 
 ### Acknowledgements
 
