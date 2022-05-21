@@ -15,7 +15,7 @@ Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Advent
 
 ## Link to Deployed Application
 
-[Click to view the deployed application](https://warm-falls-71074.herokuapp.com/)
+[Click to view the deployed application](https://adventurequest.herokuapp.com/)
 
 ![Preview of tech today](./public/img/sitePreview.gif)
 
