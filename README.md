@@ -15,7 +15,7 @@ Whether you are an Adventurer seeking a Quest or a Questmaster seeking an Advent
 
 ## Link to Deployed Application
 
-[Click to view the deployed application](https://warm-falls-71074.herokuapp.com/)
+[Click to view the deployed application](https://adventurequest.herokuapp.com/)
 
 ![Preview of tech today](./public/img/sitePreview.gif)
 
@@ -89,8 +89,7 @@ Math random chooses a number between 0 and 1 and our fraction acts as the over/u
 
 So now we need to way to determine which stat we will use; enter math random again!  We use it to pick a number from 1 to 3 with each number representing a stat.  This all fits snuggly within a while loop that runs so long as both parties are alive.  Once someone dies, we have a winner and the loop exits.
 
-```md
-
+```javascript
   while (monsterHitPoints > 0 && adventurerHitPoints > 0) {
     if (Math.random() < fightArray[i] + adventurerPower) {
       damage = Math.ceil(Math.floor((Math.random() * 3) + 1) + adventurerPower);
